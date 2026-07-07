@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alex &amp; M -- January 5-6, 2027 -- Coorg, India</title>
+  <meta name="description" content="Two days in the Western Ghats. Travel routes, schedule, and RSVP for Alex & M's wedding at Coorg Marriott Resort & Spa.">
+
+  <!-- Open Graph: the card that shows when the link is shared in WhatsApp/iMessage.
+       og:image MUST be an absolute URL -- WhatsApp will not resolve a relative path.
+       Replace PASTE_DOMAIN_HERE with the real domain before launch. -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://PASTE_DOMAIN_HERE/">
+  <meta property="og:title" content="Alex & M -- January 5-6, 2027 -- Coorg, India">
+  <meta property="og:description" content="Two days in the Western Ghats. Travel routes, the schedule, and your RSVP -- we'll pick you up at the airport.">
+  <meta property="og:image" content="https://PASTE_DOMAIN_HERE/images/og-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/bodoni-moda-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/jost-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="images/hero.avif" as="image" type="image/avif">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sticky nav: hidden over hero, appears on scroll (app.js toggles .nav--visible).
+       Peppercorn bg, Blossom links, Marigold RSVP button (6.3:1 on Peppercorn).
+       NEVER a Cherry button on Peppercorn (1.3:1 -- invisible). -->
+  <nav class="nav" id="nav" aria-label="Site">
+    <a class="nav__mark" href="#top">A&amp;M</a>
+    <div class="nav__links">  <!-- hidden on mobile: AM mark + RSVP only fit 375px -->
+      <a href="#travel">Travel</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#hotel">Hotel</a>
+      <a href="#getting-there">Getting There</a>
+    </div>
+    <a class="nav__rsvp" href="#rsvp">RSVP</a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="top">
+    <picture>
+      <source srcset="images/hero.avif" type="image/avif">
+      <source srcset="images/hero.webp" type="image/webp">
+      <img class="hero__img" src="images/hero.jpg" alt="Mist over coffee plantations in the Western Ghats, Coorg" fetchpriority="high">
+    </picture>
+    <div class="hero__content">
+      <p class="hero__names">ALEX &amp; M</p>
+      <h1 class="hero__title">Two days in the Western Ghats</h1>
+      <p class="hero__date">JANUARY 5&ndash;6, 2027 &middot; COORG, INDIA</p>
+      <p class="hero__venue">Coorg Marriott Resort &amp; Spa &middot; Madikeri, Karnataka</p>
+      <div class="hero__personas">
+        <a class="btn btn--cherry" href="#travel">I&rsquo;m traveling internationally</a>
+        <a class="btn btn--ghost" href="#schedule">Just need the details</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ VISA / ESSENTIALS CALLOUT (high on page) ============ -->
+    <section class="section section--callout" id="essentials">
+      <div class="measure">
+        <h2 class="callout__title">Before anything else: your visa</h2>
+        <p>U.S. passport holders need an <strong>Indian e-Visa</strong>. It&rsquo;s a simple online form, but do it early.</p>
+        <ul>
+          <li>Apply ONLY at the official government site: <a href="https://indianvisaonline.gov.in" rel="noopener">indianvisaonline.gov.in</a> &mdash; third-party &ldquo;visa services&rdquo; charge triple for the same thing.</li>
+          <li>Choose the 30-day e-Tourist visa (~US$25). Approval typically takes 3&ndash;7 days; you&rsquo;ll print the approval and show it on arrival.</li>
+          <li><strong>Apply by early December</strong> &mdash; that leaves room for a photo re-upload or a slow week without touching your trip.</li>
+          <li>Your passport must be valid <strong>6 months beyond arrival</strong> (through at least July 2027) with 2 blank pages. Check it today; renewals take 6-8 weeks.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ TRAVEL GUIDE: full-width editorial strips ============ -->
+    <section class="section" id="travel">
+      <div class="measure">
+        <h2>The journey is the adventure</h2>
+        <p class="section__lede">The wedding is a Tuesday&ndash;Wednesday in the mountains of India.
+           Here&rsquo;s how to turn getting there into the trip of a lifetime &mdash; four ways to break up
+           the flight, each with 2&ndash;3 days somewhere extraordinary. Every route ends the same way:
+           a short hop into Mangaluru (IXE), where we&rsquo;ll pick you up.</p>
+      </div>
+
+      <!-- One route per full-width strip; spice colors as ACCENT borders/labels, never washes. -->
+      <article class="strip strip--laterite" id="route-dubai">
+        <div class="strip__inner">
+          <div>
+            <p class="strip__label">Route 01 &mdash; Westbound &middot; Premium</p>
+            <h3>The Dubai Route</h3>
+            <p class="strip__path">US West Coast &rarr; Dubai (2&ndash;3 days) &rarr; nonstop to Mangaluru (IXE)</p>
+            <p>Fly the westbound way and break the trip in the most theatrical layover city on Earth.
+               Desert safari one day, Burj Khalifa and the souks the next &mdash; then a short hop lands you
+               practically at the wedding. Pricier on the ground, but iconic.</p>
+            <ul class="strip__facts-list">
+              <li><strong>Leg 1:</strong> West Coast &rarr; Dubai, ~20&ndash;24 hr with 1 stop &middot; $800&ndash;1,200 round-trip as of July 2026</li>
+              <li><strong>Stopover:</strong> 2&ndash;3 days &mdash; desert safari, Burj Khalifa, beaches, the malls</li>
+              <li><strong>Leg 2:</strong> Air India Express nonstop Dubai &rarr; IXE, ~4 hr &mdash; the only route on this page with a direct international flight to the pickup airport</li>
+              <li><strong>Timezone trick:</strong> Dubai is UTC+4, India UTC+5:30 &mdash; you do the hard adjustment on the long leg, then barely feel the hop</li>
+            </ul>
+          </div>
+          <div>
+            <picture>
+              <source srcset="images/route-dubai.avif" type="image/avif">
+              <source srcset="images/route-dubai.webp" type="image/webp">
+              <img class="strip__img" src="images/route-dubai.jpg" alt="Dubai skyline at dusk" loading="lazy">
+            </picture>
+            <p class="strip__facts">Book legs 1+2 as one ticket where you can. If they&rsquo;re separate tickets, leave a full buffer <em>day</em> in Dubai and carry travel insurance. Land in India by <strong>Jan 3</strong>. And when you land &mdash; <strong>we&rsquo;ll pick you up.</strong></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="strip strip--marigold" id="route-bangkok">
+        <div class="strip__inner">
+          <div>
+            <p class="strip__label">Route 02 &mdash; Eastbound &middot; Best Value</p>
+            <h3>The Bangkok Route</h3>
+            <p class="strip__path">US West Coast &rarr; Bangkok (2&ndash;3 days) &rarr; Bangalore (BLR) &rarr; 1-hr hop to Mangaluru (IXE)</p>
+            <p>Temples, street food, rooftop nightlife &mdash; and your dollar goes further than anywhere else
+               on this page. $30/night hotels, $3 meals that ruin you for home cooking. The best value route by a mile.</p>
+            <ul class="strip__facts-list">
+              <li><strong>Leg 1:</strong> West Coast &rarr; Bangkok, ~20&ndash;24 hr with 1 stop (via Tokyo/Seoul/Hong Kong) &middot; $600&ndash;900 round-trip as of July 2026</li>
+              <li><strong>Stopover:</strong> 2&ndash;3 days &mdash; Grand Palace, Chatuchak market, khao soi you&rsquo;ll dream about</li>
+              <li><strong>Leg 2:</strong> Bangkok &rarr; Bangalore (BLR), ~4 hr direct (Thai Airways, IndiGo, Air India)</li>
+              <li><strong>Leg 3:</strong> BLR &rarr; Mangaluru (IXE), 1 hr, ~$30&ndash;50, several daily</li>
+            </ul>
+            <p class="strip__aside">Yes, this one has an extra leg &mdash; the Bangalore connection. Bangkok is worth it.</p>
+          </div>
+          <div>
+            <picture>
+              <source srcset="images/route-bangkok.avif" type="image/avif">
+              <source srcset="images/route-bangkok.webp" type="image/webp">
+              <img class="strip__img" src="images/route-bangkok.jpg" alt="Wat Arun temple, Bangkok" loading="lazy">
+            </picture>
+            <p class="strip__facts">Book the long-haul and the India legs as one ticket where you can. Separate tickets? Leave a full buffer <em>day</em> in Bangkok and carry travel insurance. Land in India by <strong>Jan 3</strong> &mdash; and when you do, <strong>we&rsquo;ll pick you up at IXE.</strong></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="strip strip--cherry" id="route-tokyo">
+        <div class="strip__inner">
+          <div>
+            <p class="strip__label">Route 03 &mdash; Eastbound &middot; Whoa</p>
+            <h3>The Tokyo Route</h3>
+            <p class="strip__path">US West Coast &rarr; Tokyo (2&ndash;3 days) &rarr; JAL nonstop to Bangalore (BLR) &rarr; 1-hr hop to Mangaluru (IXE)</p>
+            <p>The shortest first leg on this page and the biggest &ldquo;whoa&rdquo; per day. January Tokyo is
+               cool, clear, and calm. Once in a lifetime &mdash; and you&rsquo;re already on this side of the world.</p>
+            <ul class="strip__facts-list">
+              <li><strong>Leg 1:</strong> West Coast &rarr; Tokyo, ~14&ndash;16 hr total with 1 stop (via SEA/LAX) &middot; $540&ndash;900 round-trip as of July 2026 &mdash; the shortest first leg of any route</li>
+              <li><strong>Stopover:</strong> 2&ndash;3 days &mdash; food, temples, Shibuya at night, absurdly good convenience stores</li>
+              <li><strong>Leg 2:</strong> JAL nonstop Tokyo (NRT) &rarr; Bangalore (BLR), ~8 hr, <strong>3&times; weekly &mdash; build your dates around it</strong></li>
+              <li><strong>Leg 3:</strong> BLR &rarr; Mangaluru (IXE), 1-hr hop</li>
+            </ul>
+          </div>
+          <div>
+            <picture>
+              <source srcset="images/route-tokyo.avif" type="image/avif">
+              <source srcset="images/route-tokyo.webp" type="image/webp">
+              <img class="strip__img" src="images/route-tokyo.jpg" alt="Lanterns in a Tokyo alley at night" loading="lazy">
+            </picture>
+            <p class="strip__facts">The JAL Bangalore nonstop is only 3&times; weekly, so lock your dates to it. One ticket beats two; a separate booking wants a buffer <em>day</em> in Tokyo and travel insurance. Land in India by <strong>Jan 3</strong> &mdash; <strong>we&rsquo;ll be at IXE.</strong></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="strip strip--lichen" id="route-delhi">
+        <div class="strip__inner">
+          <div>
+            <p class="strip__label">Route 04 &mdash; Already in India</p>
+            <h3>The Delhi Route</h3>
+            <p class="strip__path">US West Coast &rarr; Delhi (2&ndash;3 days) &rarr; domestic nonstop to Mangaluru (IXE)</p>
+            <p>Land in India first, adjust once, and spend your stopover already in the country &mdash; with a
+               Taj Mahal day trip (Agra, ~3 hr by train), the Red Fort, and Old Delhi street food.</p>
+            <ul class="strip__facts-list">
+              <li><strong>Leg 1:</strong> West Coast &rarr; Delhi, ~20&ndash;24 hr with 1 stop &middot; $600&ndash;900 round-trip as of July 2026</li>
+              <li><strong>Stopover:</strong> 2&ndash;3 days, already timezone-adjusted for the wedding</li>
+              <li><strong>Leg 2:</strong> Delhi &rarr; Mangaluru (IXE), ~2.5&ndash;3 hr domestic, multiple daily options &mdash; <strong>the cheapest final leg of any route</strong></li>
+            </ul>
+          </div>
+          <div>
+            <picture>
+              <source srcset="images/route-delhi.avif" type="image/avif">
+              <source srcset="images/route-delhi.webp" type="image/webp">
+              <img class="strip__img" src="images/route-delhi.jpg" alt="Humayun&rsquo;s Tomb, Delhi" loading="lazy">
+            </picture>
+            <p class="strip__facts">Booking the US&ndash;Delhi and Delhi&ndash;IXE legs together is simplest. Separate tickets? Leave a buffer <em>day</em> in Delhi. You&rsquo;re already in India after leg 1, so the last hop is low-stress &mdash; and <strong>we&rsquo;ll pick you up at IXE.</strong></p>
+          </div>
+        </div>
+      </article>
+
+      <aside class="strip strip--sidebar" id="route-singapore">
+        <div class="strip__inner">
+          <div>
+            <p class="strip__label">Sidebar &mdash; for nervous first-timers</p>
+            <h3>The Singapore Option</h3>
+            <p class="strip__path">US West Coast &rarr; Singapore (2&ndash;3 days) &rarr; nonstop to Bangalore (BLR) &rarr; 1-hr hop to Mangaluru (IXE)</p>
+            <p>Never left the country and feeling it? Singapore is <em>training wheels for international travel</em>:
+               everything in English, spotless, hyper-organized, and impossible to get lost in. Singapore Airlines
+               BLR nonstop is ~4.5 hr. Expect $700&ndash;1,000 round-trip from the West Coast as of July 2026.
+               Same rules: one ticket where possible, land by Jan 3 &mdash; and <strong>we&rsquo;ll pick you up.</strong></p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="measure" id="travel-notes">
+        <h3>Booking windows &amp; the fine print</h3>
+        <ul>
+          <li><strong>Prices above are round-trip estimates as of July 2026.</strong> For early-January travel, fares spike from October &mdash; <strong>book by Labor Day (Sept 7)</strong> and thank yourself later.</li>
+          <li><strong>Not starting from the West Coast?</strong> The same stopovers work from anywhere &mdash; your final leg is always <strong>Mangaluru (IXE)</strong>, a short domestic hop from Bangalore, Delhi, or Mumbai. Tell us when you land.</li>
+          <li><strong>One ticket beats two.</strong> A single itinerary means the airline owns your missed connection. Booking legs separately? Leave a buffer <em>day</em> (not hours) at the transfer city, and buy travel insurance (~$50&ndash;80).</li>
+          <li><strong>Aim to be in India by January 3</strong> &mdash; two days of slack absorbs any delay and lets you land at the wedding rested.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SCHEDULE ============ -->
+    <section class="section section--schedule" id="schedule">
+      <div class="measure">
+        <h2>The two days</h2>
+        <div id="schedule-events">
+          <p class="section__lede">Two days, five celebrations, one hillside. Exact timings and dress codes will
+             appear here as we lock them &mdash; the shape of the two days is set.</p>
+
+          <div class="event">
+            <span class="event__label event__label--lichen">Welcome Dinner</span>
+            <div><h3>Monday evening, January 4</h3>
+              <p>For everyone arriving early: dinner, introductions, and the first of many toasts. Timing to follow.</p></div>
+          </div>
+          <div class="event">
+            <span class="event__label event__label--marigold">Haldi</span>
+            <div><h3>Tuesday morning, January 5</h3>
+              <p>Turmeric, laughter, and clothes you won&rsquo;t mind sacrificing to the cause. Marigold owns this morning. Timing to follow.</p></div>
+          </div>
+          <div class="event">
+            <span class="event__label event__label--laterite">Mehendi &amp; Sangeet</span>
+            <div><h3>Tuesday afternoon &amp; evening, January 5</h3>
+              <p>Henna in the afternoon, then music and dancing into the night. Timing to follow.</p></div>
+          </div>
+          <div class="event">
+            <span class="event__label event__label--cherry">Ceremony</span>
+            <div><h3>Wednesday, January 6</h3>
+              <p>The main event, in the hills. Timing and dress code to follow.</p></div>
+          </div>
+          <div class="event">
+            <span class="event__label event__label--cherry">Reception</span>
+            <div><h3>Wednesday evening, January 6</h3>
+              <p>Dinner, dancing, and the send-off. Timing to follow.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOTEL ============ -->
+    <section class="section" id="hotel">
+      <div class="measure">
+        <h2>Where you&rsquo;re staying</h2>
+        <div id="hotel-content">
+          <p><strong>Coorg Marriott Resort &amp; Spa</strong> &mdash; Somwarpet Rd, Makkandur Village, Kodagu District,
+             Madikeri, Karnataka 571201, India. 37 acres of forest in the UNESCO-listed Western Ghats;
+             108 rooms, villas, and cottages. The whole celebration happens on the property.</p>
+
+          <div class="callout--stop" role="note">
+            <h3>Do NOT book the Marriott yourself</h3>
+            <p><strong>Your room for January 5&ndash;6 is handled.</strong> We are holding rooms as a block &mdash;
+               booking through the Marriott website will create a duplicate reservation at a worse rate,
+               outside our block, and probably in the wrong building.</p>
+            <p><strong>To extend your stay</strong> before Jan 5 or after Jan 6: RSVP with your real arrival and
+               departure dates and we&rsquo;ll extend your room at the block rate. Extra nights are on you, but
+               you&rsquo;ll get our rate &mdash; don&rsquo;t pay rack rate.</p>
+          </div>
+
+          <h3>Before or after Coorg</h3>
+          <p>Making a longer trip of it? Nearby bases guests are eyeing: <strong>Mysore</strong> (palace city, 3 hr),
+             <strong>Kannur</strong> (beaches, 3 hr), <strong>Bangalore</strong> (big-city landing pad, 5&ndash;6 hr).
+             Ask us on WhatsApp &mdash; we have opinions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GETTING THERE ============ -->
+    <section class="section section--getting-there" id="getting-there">
+      <div class="measure">
+        <h2>Getting there &amp; getting ready</h2>
+        <div id="getting-there-content">
+          <h3>One airport: Mangaluru (IXE) &mdash; we&rsquo;ll pick you up</h3>
+          <p><strong>Everyone flies into Mangaluru International (IXE), no matter where you start.</strong> Send us your flight in the RSVP and consider ground transport handled &mdash; it&rsquo;s a scenic 3.5&ndash;4 hr drive to the resort and we&rsquo;ll be there when you land.</p>
+          <p>Why IXE? It&rsquo;s a small, easy airport (no mega-terminal chaos for first-time travelers), it has a <strong>direct Air India Express flight from Dubai</strong>, and it connects by short domestic hop from all three of India&rsquo;s big international hubs:</p>
+          <ul>
+            <li><strong>From Bangalore (BLR)</strong> &mdash; 1-hr hop, ~$30&ndash;50, several daily (IndiGo, Air India Express)</li>
+            <li><strong>From Delhi (DEL)</strong> &mdash; ~2.5 hr domestic, multiple daily options</li>
+            <li><strong>From Mumbai (BOM)</strong> &mdash; ~1.5 hr domestic, multiple daily options</li>
+          </ul>
+          <p>So whatever your international routing &mdash; Dubai, Bangkok, Tokyo, Delhi, Singapore, or anywhere else &mdash; your last flight is always the same: <strong>a short hop into IXE, where we&rsquo;ll be waiting.</strong></p>
+
+          <h3>Money</h3>
+          <ul>
+            <li>Currency is the Indian Rupee (&#8377;). Cards work at the resort; carry ~&#8377;5,000 (&asymp;$60) in cash for small stops. Airport ATMs are the easy source.</li>
+            <li>Tell your bank you&rsquo;re traveling. No need to buy rupees in the U.S.</li>
+          </ul>
+
+          <h3>Phone</h3>
+          <ul>
+            <li>Easiest: an eSIM (Airalo or similar) bought before you fly &mdash; working data the minute you land.</li>
+            <li>Physical SIMs at the airport need your passport photo page; fine, just slower.</li>
+            <li>WhatsApp is how India communicates &mdash; install it before you leave; it&rsquo;s also how you reach us.</li>
+          </ul>
+
+          <h3>Power, weather, packing</h3>
+          <ul>
+            <li>India uses Type C/D/M plugs, 230V &mdash; pack a universal adapter (your phone charger handles the voltage).</li>
+            <li>January in Coorg: gorgeous. Days 75&ndash;80&deg;F, evenings 50&ndash;55&deg;F in the hills &mdash; bring a real layer for nights.</li>
+            <li>Comfortable shoes (the resort is 37 acres), sunscreen, insect repellent, any prescription meds in original packaging.</li>
+            <li>Event dress codes are listed with the schedule above.</li>
+          </ul>
+
+          <h3>Good to know</h3>
+          <ul>
+            <li>Tap water: don&rsquo;t. Bottled/filtered water is everywhere, including the resort.</li>
+            <li>Shoes come off at temples and homes; shoulders/knees covered at religious sites.</li>
+            <li>Head-wobble means yes. Usually.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RSVP ============ -->
+    <section class="section section--rsvp" id="rsvp">
+      <div class="measure">
+        <h2>Tell us you&rsquo;re coming</h2>
+        <p class="rsvp__deadline">Please RSVP by <strong>September 1</strong> if you can &mdash;
+           <strong>October 1, 11:59pm Pacific</strong> is the hard cutoff for the caterer and the pickup plan.</p>
+        <div id="rsvp-slot">
+          <form id="rsvp-form" class="form-grid" novalidate>
+            <!-- Honeypot: humans never see it; bots fill it; server fakes success and stores nothing -->
+            <div class="hp" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input type="text" id="f-name" name="name" required maxlength="100" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input type="email" id="f-email" name="email" required maxlength="100" autocomplete="email" inputmode="email">
+            </div>
+
+            <fieldset class="field">
+              <legend>Will you be there?</legend>
+              <label><input type="radio" name="attending" value="yes" required> Wouldn&rsquo;t miss it</label>
+              <label><input type="radio" name="attending" value="no"> Celebrating from afar</label>
+            </fieldset>
+
+            <!-- Everything below shows only when attending=yes (app.js toggles [hidden] + disabled) -->
+            <div id="yes-fields" hidden>
+              <div class="field">
+                <label for="f-party-size">How many in your party (including you)?</label>
+                <input type="number" id="f-party-size" name="party_size" min="1" max="10" value="1" required disabled>
+              </div>
+
+              <!-- app.js renders one block per person: name + dietary + allergies.
+                   These inputs have NO name attribute -- app.js composes them into the
+                   three hidden fields below so the backend keeps its fixed 13 columns. -->
+              <div id="party-people"></div>
+              <input type="hidden" name="party_names" id="f-party-names" disabled>
+              <input type="hidden" name="dietary_restrictions" id="f-dietary" disabled>
+              <input type="hidden" name="allergies" id="f-allergies" disabled>
+
+              <div class="field">
+                <label for="f-airport">Flying into Mangaluru (IXE)? <span class="field__hint">(That&rsquo;s the plan for everyone &mdash; we&rsquo;ll pick you up there. See the travel guide above.)</span></label>
+                <select id="f-airport" name="arrival_airport" required disabled>
+                  <option value="IXE" selected>Yes &mdash; Mangaluru (IXE)</option>
+                  <option value="OTHER">I need to land somewhere else &mdash; will WhatsApp you</option>
+                  <option value="NOT_SURE">Not sure yet &mdash; will update you</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-arrival">Arrival date</label>
+                <input type="date" id="f-arrival" name="arrival_date" required disabled min="2026-12-15" max="2027-01-06">
+              </div>
+              <div class="field">
+                <label for="f-flight">Flight number <span class="field__hint">(optional &mdash; send it later on WhatsApp if you haven&rsquo;t booked)</span></label>
+                <input type="text" id="f-flight" name="flight_number" maxlength="20" disabled placeholder="e.g. IX 384">
+              </div>
+              <div class="field">
+                <label for="f-departure">Departure date</label>
+                <input type="date" id="f-departure" name="departure_date" required disabled min="2027-01-06" max="2027-02-15">
+              </div>
+            </div>
+
+            <p id="form-error" class="rsvp-state rsvp-error" role="alert"></p>
+            <button type="submit" class="btn btn--cherry" id="submit-btn">Send our RSVP</button>
+          </form>
+
+          <!-- Success state (inline confirmation, shown only on {ok:true}) -->
+          <div id="rsvp-success" class="rsvp-state rsvp-success" role="status">
+            <h3 class="italic-note">We can&rsquo;t wait to see you.</h3>
+            <p>Your RSVP is in. We&rsquo;ll be at the airport when you land &mdash; watch WhatsApp as the date gets close.</p>
+            <p><a class="btn btn--cherry" href="wedding.ics" download>Add the wedding to your calendar</a></p>
+          </div>
+
+          <!-- Error state (warm, Lichen bg, Cherry retry) -->
+          <div id="rsvp-error" class="rsvp-state rsvp-error" role="alert">
+            <p><strong>That didn&rsquo;t go through</strong> &mdash; the mountain internet gremlins, probably. Nothing was lost.</p>
+            <p id="rsvp-error-detail"></p>
+            <button type="button" class="btn" id="retry-btn">Try again</button>
+            <p>Still stuck? <a href="https://wa.me/1XXXXXXXXXX">WhatsApp us your RSVP</a> and we&rsquo;ll record it by hand.</p>
+          </div>
+
+          <!-- After-deadline state (Bodoni italic + contact fallback; server keeps accepting) -->
+          <div id="rsvp-closed" class="rsvp-state">
+            <p class="rsvp-closed">The RSVP window has closed &mdash; but we still want to hear from you.</p>
+            <p>Message us on <a href="https://wa.me/1XXXXXXXXXX">WhatsApp</a> or
+               <a href="mailto:PASTE_PERSONAL_EMAIL_HERE">email</a> and we&rsquo;ll see what we can do.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section section--contact" id="contact">
+      <div class="measure" id="contact-content">
+        <h2>Questions? Just ask.</h2>
+        <p class="italic-note">No question is too small &mdash; &ldquo;what do I pack&rdquo; and
+           &ldquo;is the water safe&rdquo; are exactly what we&rsquo;re here for.</p>
+        <p>
+          <a class="btn btn--cherry" href="https://wa.me/1XXXXXXXXXX?text=Hi!%20Question%20about%20the%20wedding%3A%20"
+             rel="noopener">WhatsApp us</a>
+          &nbsp;
+          <a class="btn btn--ghost" href="mailto:PASTE_PERSONAL_EMAIL_HERE?subject=Coorg%20wedding%20question">Email instead</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__mark">A &amp; M &middot; Coorg, India &middot; January 5&ndash;6, 2027</p>
+    <p class="footer__updated">Last updated: <span id="last-updated">July 2026</span></p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

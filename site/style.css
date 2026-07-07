@@ -1,0 +1,208 @@
+/* ================================================================
+   Design system -- Coorg wedding one-pager
+   Palette + rules from the wedding print suite, reinterpreted for
+   a one-pager ("piece" = viewport-height section).
+   ================================================================ */
+
+/* ---- Fonts: self-hosted subsets, total budget < 100KB ---- */
+@font-face {
+  font-family: 'Bodoni Moda';
+  src: url('fonts/bodoni-moda-regular.woff2') format('woff2');
+  font-weight: 400 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Bodoni Moda';
+  src: url('fonts/bodoni-moda-italic.woff2') format('woff2');
+  font-weight: 400 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('fonts/jost-regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('fonts/jost-medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* ---- Palette (locked) ---- */
+  --cherry:     #6B1D28;  /* Coffee Cherry -- the lead. Headlines, seals. On Blossom/Lichen ONLY. */
+  --blossom:    #F5EFE2;  /* The canvas. Backgrounds, paper. */
+  --lichen:     #A7B29C;  /* Forest breathing through. Accents, error-state bg. */
+  --laterite:   #B65C38;  /* Coorg's red earth. Accent labels/borders only. */
+  --marigold:   #DD9C26;  /* The garland. Accent labels + the ONLY CTA fill on Peppercorn. */
+  --brass:      #A9873F;  /* Temple lamps. 1px rules ONLY -- a glint, never a wall. */
+  --peppercorn: #23291F;  /* Forest at dusk. Body ink, nav bg. */
+
+  /* ---- Type (minimums are review findings, do not shrink) ---- */
+  --font-display: 'Bodoni Moda', 'Didot', 'Bodoni MT', serif;
+  --font-text: 'Jost', 'Futura', 'Century Gothic', sans-serif;
+  --size-body: 17px;        /* Jost 400; 16px absolute floor */
+  --size-display-min: 22px; /* Bodoni regular floor */
+  --size-italic-min: 24px;  /* Bodoni italic floor (hairlines vanish smaller) */
+
+  --measure: 800px;         /* text column ~65ch reading measure */
+  --nav-h: 60px;
+  --space: clamp(1rem, 2.5vw, 2rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--blossom);
+  color: var(--peppercorn);           /* Peppercorn on Blossom ~13:1 AAA -- the default, always */
+  font-family: var(--font-text);
+  font-weight: 400;                    /* NEVER 300/Light */
+  font-size: var(--size-body);
+  line-height: 1.5;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; color: var(--cherry); line-height: 1.15; }
+h1 { font-size: clamp(34px, 6vw, 56px); }
+h2 { font-size: clamp(26px, 4vw, 38px); }
+h3 { font-size: clamp(22px, 3vw, 28px); }        /* never below --size-display-min */
+.italic-note { font-family: var(--font-display); font-style: italic; font-size: max(24px, 1.4em); }
+
+.caps { font-family: var(--font-text); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; font-size: 14px; }
+
+a { color: var(--cherry); text-underline-offset: 3px; }
+
+/* Text sections: centered column, ~65-char measure. Hero + strips run edge-to-edge. */
+.measure { max-width: var(--measure); margin-inline: auto; padding-inline: var(--space); }
+.section { padding-block: clamp(3rem, 8vw, 6rem); }
+.section + .section { border-top: 1px solid var(--brass); }  /* brass = 1px glint dividers */
+[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }        /* anchors clear the sticky nav */
+
+.section__lede { font-size: 1.1em; }
+
+/* ---- Sticky nav: appears after hero (app.js adds .nav--visible) ---- */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 100; height: var(--nav-h);
+  display: flex; align-items: center; gap: 1.25rem; padding-inline: var(--space);
+  background: var(--peppercorn);
+  transform: translateY(-100%); transition: transform 200ms ease;
+}
+.nav--visible { transform: translateY(0); }
+.nav__mark { font-family: var(--font-display); font-size: 22px; color: var(--blossom); text-decoration: none; }
+.nav__links { display: flex; gap: 1.25rem; margin-inline: auto; }
+.nav__links a { color: var(--blossom); text-decoration: none; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; font-size: 14px; }
+.nav__rsvp {
+  margin-left: auto;
+  background: var(--marigold); color: var(--peppercorn);   /* 6.3:1 -- the ONLY approved CTA on Peppercorn */
+  font-weight: 500; text-decoration: none; padding: 10px 22px; border-radius: 3px;
+  letter-spacing: 0.08em; text-transform: uppercase; font-size: 14px;
+}
+.nav__links + .nav__rsvp { margin-left: 0; }
+@media (max-width: 640px) {
+  .nav__links { display: none; }                            /* mobile nav = AM mark + RSVP only */
+  .nav__rsvp { margin-left: auto; }
+}
+
+/* ---- Hero: edge-to-edge image, Blossom text panel ---- */
+.hero { position: relative; min-height: 92svh; display: grid; place-items: end center; }
+.hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero__content {
+  position: relative; text-align: center; width: min(680px, 92%);
+  background: var(--blossom); border-top: 1px solid var(--brass);
+  padding: clamp(1.5rem, 4vw, 3rem); margin-bottom: clamp(1rem, 4vw, 3rem);
+}
+.hero__names { letter-spacing: 0.22em; font-weight: 500; margin: 0; }
+.hero__title { margin: 0.4em 0; }
+.hero__date, .hero__venue { letter-spacing: 0.14em; font-size: 15px; }
+.hero__personas { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.25rem; }
+
+/* ---- Buttons ---- */
+.btn { display: inline-block; padding: 12px 26px; border-radius: 3px; text-decoration: none;
+       font-weight: 500; letter-spacing: 0.06em; border: 1px solid transparent; cursor: pointer;
+       font-family: var(--font-text); font-size: 16px; }
+.btn--cherry { background: var(--cherry); color: var(--blossom); }   /* on Blossom canvas only */
+.btn--ghost  { background: transparent; color: var(--peppercorn); border-color: var(--peppercorn); }
+.btn--marigold { background: var(--marigold); color: var(--peppercorn); }
+.btn:disabled { opacity: 0.6; cursor: wait; }
+
+/* ---- Callout (visa/essentials): Cherry text on Blossom, Laterite accent border ---- */
+.section--callout { background: var(--blossom); }
+.section--callout .measure { border-left: 4px solid var(--laterite); }
+.callout__title { color: var(--cherry); }
+
+/* ---- Hotel: bold "do not book" block (Cherry text on Blossom, Cherry border) ---- */
+.callout--stop { border: 2px solid var(--cherry); border-radius: 3px; padding: 1.25rem 1.5rem; margin-block: 1.5rem; }
+.callout--stop h3 { margin-top: 0; }
+
+/* ---- Travel strips: full-width editorial rows, spice ACCENTS not washes ---- */
+.strip { border-top: 4px solid; background: var(--blossom); padding: clamp(2rem, 5vw, 4rem) 0; }
+.strip--laterite { border-color: var(--laterite); }
+.strip--marigold { border-color: var(--marigold); }
+.strip--cherry   { border-color: var(--cherry); }
+.strip--lichen   { border-color: var(--lichen); }
+.strip--sidebar  { border-color: var(--brass); border-top-width: 1px; }
+.strip__inner { max-width: 1100px; margin-inline: auto; padding-inline: var(--space);
+                display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .strip__inner { grid-template-columns: 5fr 4fr; align-items: center; } }
+.strip__label { font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; font-size: 14px; }
+.strip--laterite .strip__label { color: var(--laterite); }
+.strip--marigold .strip__label { color: #8a5f12; }   /* darkened marigold for small text on Blossom */
+.strip--cherry   .strip__label { color: var(--cherry); }
+.strip--lichen   .strip__label { color: #5d6852; }   /* darkened lichen for small text on Blossom */
+.strip__path { font-weight: 500; }
+.strip__aside { font-style: italic; color: #5d6852; }
+.strip__facts-list { padding-left: 1.1rem; }
+.strip__img { width: 100%; height: auto; border: 1px solid var(--brass); }
+.strip__facts { border-top: 1px solid var(--brass); padding-top: 0.75rem; font-size: 16px; }
+
+/* ---- Schedule: spice-colored event LABELS on the shared Blossom canvas ---- */
+.event { display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding-block: 1.25rem;
+         border-bottom: 1px solid var(--brass); }
+.event__label { align-self: start; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+                font-size: 14px; padding: 4px 10px; border: 1px solid currentColor; border-radius: 2px; }
+.event__label--lichen   { color: #5d6852; }   /* Welcome Dinner */
+.event__label--marigold { color: #8a5f12; }   /* Haldi */
+.event__label--laterite { color: var(--laterite); }  /* Mehendi & Sangeet (4.0:1, AA large/bold) */
+.event__label--cherry   { color: var(--cherry); }    /* Ceremony + Reception */
+.event h3 { margin: 0; }
+
+/* ---- RSVP form + states ---- */
+.rsvp__deadline { font-size: 1.05em; }
+.form-grid { display: grid; gap: 1.1rem; }
+.field label { display: block; font-weight: 500; margin-bottom: 4px; }
+.field legend { font-weight: 500; margin-bottom: 4px; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 12px; font: inherit; color: var(--peppercorn);
+  background: #fff; border: 1px solid var(--peppercorn); border-radius: 3px;
+}
+.field input[type="radio"] { width: auto; margin-right: 0.5rem; }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+  outline: 2px solid var(--cherry); outline-offset: 1px;
+}
+.field__hint { font-weight: 400; font-size: 15px; opacity: 0.8; }
+.person-block { border-left: 2px solid var(--lichen); padding-left: 1rem; margin-block: 1rem; display: grid; gap: 0.75rem; }
+.hp { position: absolute !important; left: -9999px !important; opacity: 0; pointer-events: none; }
+
+.rsvp-state { display: none; padding: 1.25rem; border-radius: 3px; }
+.rsvp-state--show { display: block; }
+.rsvp-success { background: var(--blossom); border: 1px solid var(--brass); }
+.rsvp-error   { background: var(--lichen); color: var(--peppercorn); }  /* warm, not alarming */
+.rsvp-error .btn { background: var(--cherry); color: var(--blossom); }  /* Cherry on Lichen 5.2:1 AA */
+.rsvp-closed  { font-family: var(--font-display); font-style: italic; font-size: 24px; }
+/* #form-error is a .rsvp-error but must stay hidden until app.js needs it (kept via .rsvp-state default:none) */
+.spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--blossom);
+           border-top-color: transparent; border-radius: 50%; vertical-align: -4px; margin-right: 8px;
+           animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- Contact + footer ---- */
+.section--contact { text-align: center; }
+.footer { background: var(--peppercorn); color: var(--blossom); text-align: center;
+          padding: 2.5rem var(--space); }
+.footer__mark { font-family: var(--font-display); font-size: 22px; margin: 0 0 0.5rem; }
+.footer__updated { font-size: 14px; letter-spacing: 0.08em; opacity: 0.85; margin: 0; }
+
+img { max-width: 100%; height: auto; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .spinner { animation-duration: 2s; }
+  .nav { transition: none; }
+}
