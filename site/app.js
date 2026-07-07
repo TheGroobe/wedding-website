@@ -2,18 +2,53 @@
   'use strict';
 
   // ==== CONFIG ====
-  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzbGhyVR3FiaieY2UerRWDaaKYw1XUYkf2OHt2VOL0OVXFnO0XDLP0ILLbrgkDyjsax/exec'; // pinned /exec URL — update via Manage deployments > edit, never New deployment
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzbGhyVR3FiaieY2UerRWDaaKYw1XUYkf2OHt2VOL0OVXFnO0XDLP0ILLbrgkDyjsax/exec';
   var DEADLINE_UTC = Date.UTC(2026, 9, 2, 6, 59, 59); // Oct 1, 2026 23:59:59 Pacific (PDT = UTC-7)
 
   // ==== Sticky nav: appear once the hero scrolls away ====
   var nav = document.getElementById('nav');
   var hero = document.querySelector('.hero');
-  if ('IntersectionObserver' in window) {
+  if (nav && hero && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
       nav.classList.toggle('nav--visible', !entries[0].isIntersecting);
     }, { rootMargin: '-60px 0px 0px 0px' }).observe(hero);
-  } else {
-    nav.classList.add('nav--visible'); // ancient browsers: always show
+  } else if (nav && !nav.classList.contains('nav--static')) {
+    nav.classList.add('nav--visible');
+  }
+
+  // ==== Schedule ceremony modal ====
+  var modal = document.getElementById('modal');
+  if (modal) {
+    var mEyebrow = document.getElementById('modal-eyebrow');
+    var mTitle = document.getElementById('modal-title');
+    var mBody = document.getElementById('modal-body');
+    var lastFocus = null;
+
+    function openModal(btn) {
+      var key = btn.getAttribute('data-event');
+      var tpl = document.getElementById('evt-' + key);
+      mEyebrow.textContent = btn.getAttribute('data-when') || '';
+      mTitle.textContent = btn.getAttribute('data-title') || '';
+      mBody.innerHTML = tpl ? tpl.innerHTML : '';
+      lastFocus = btn;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      modal.querySelector('.modal__close').focus();
+    }
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+    document.querySelectorAll('.event').forEach(function (btn) {
+      btn.addEventListener('click', function () { openModal(btn); });
+    });
+    modal.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', closeModal);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
   }
 
   // ==== RSVP form wiring ====
@@ -23,33 +58,40 @@
   var partySize = document.getElementById('f-party-size');
   var people = document.getElementById('party-people');
   var submitBtn = document.getElementById('submit-btn');
-  var states = {
-    success: document.getElementById('rsvp-success'),
-    error: document.getElementById('rsvp-error'),
-    closed: document.getElementById('rsvp-closed')
-  };
+  var liveWrap = document.getElementById('rsvp-live');
+  var rsvpHead = document.querySelector('#rsvp .section-head');
+  var successEl = document.getElementById('rsvp-success');
+  var errorEl = document.getElementById('rsvp-error');
+  var closedEl = document.getElementById('rsvp-closed');
 
-  // Deadline: client-side courtesy gate only -- the server keeps accepting (graceful, not hard-cut)
+  var DIET_OPTIONS = ['No restrictions', 'Vegetarian', 'Vegan', 'No beef', 'No pork', 'Halal', 'Jain', 'Gluten-free', 'Other'];
+  var ALLERGY_OPTIONS = ['None', 'Peanuts', 'Tree nuts', 'Shellfish', 'Dairy', 'Eggs', 'Gluten', 'Soy', 'Other'];
+
+  function optionsHtml(list) {
+    return list.map(function (o) { return '<option value="' + o + '">' + o + '</option>'; }).join('');
+  }
+
+  // Deadline: client-side courtesy gate -- the server keeps accepting (graceful, not hard-cut)
   if (Date.now() > DEADLINE_UTC) {
-    form.hidden = true;
-    states.closed.classList.add('rsvp-state--show');
+    var formCard = document.querySelector('#rsvp .card--form');
+    if (formCard) formCard.hidden = true;
+    var deadlineNote = document.querySelector('.rsvp__deadline');
+    if (deadlineNote) deadlineNote.hidden = true;
+    closedEl.classList.add('rsvp-state--show');
     return;
   }
 
-  // Conditional yes/no: toggle visibility AND disabled so hidden fields
-  // neither block HTML5 validation nor submit stale values
+  // Show yes-only fields; toggle disabled so hidden fields never block validation or submit stale values
   function setYesVisible(on) {
     yesFields.hidden = !on;
-    yesFields.querySelectorAll('input, select').forEach(function (el) {
-      el.disabled = !on;
-    });
+    yesFields.querySelectorAll('input, select').forEach(function (el) { el.disabled = !on; });
     if (on) renderPeople();
   }
   form.querySelectorAll('input[name="attending"]').forEach(function (radio) {
     radio.addEventListener('change', function () { setYesVisible(radio.value === 'yes' && radio.checked); });
   });
 
-  // One block per person: name + dietary + allergies (caterer needs to know WHO)
+  // One block per person: name + dietary (dropdown + fill) + allergies (dropdown + fill)
   function renderPeople() {
     var n = Math.min(10, Math.max(1, parseInt(partySize.value, 10) || 1));
     while (people.children.length > n) people.removeChild(people.lastChild);
@@ -57,12 +99,17 @@
       var d = document.createElement('div');
       d.className = 'person-block';
       d.innerHTML =
-        '<div class="field"><label>Guest ' + (i + 1) + (i === 0 ? ' (you)' : '') + ' &mdash; name</label>' +
-        '<input type="text" data-person="name" maxlength="60"' + (i === 0 ? '' : ' placeholder="Full name"') + '></div>' +
+        '<p class="person-block__name">Guest ' + (i + 1) + (i === 0 ? ' (you)' : '') + '</p>' +
+        '<div class="field"><label>Name</label>' +
+          '<input type="text" data-person="name" maxlength="60"' + (i === 0 ? '' : ' placeholder="Full name"') + '></div>' +
         '<div class="field"><label>Dietary preference</label>' +
-        '<input type="text" data-person="diet" maxlength="80" placeholder="vegetarian, vegan, no beef, none&hellip;"></div>' +
+          '<select data-person="diet-select">' + optionsHtml(DIET_OPTIONS) + '</select></div>' +
+        '<div class="field"><label>Anything to add? <span class="field__hint">(optional)</span></label>' +
+          '<input type="text" data-person="diet-text" maxlength="80" placeholder="e.g. no onion or garlic, low spice&hellip;"></div>' +
         '<div class="field"><label>Allergies</label>' +
-        '<input type="text" data-person="allergy" maxlength="80" placeholder="peanuts, shellfish, none&hellip;"></div>';
+          '<select data-person="allergy-select">' + optionsHtml(ALLERGY_OPTIONS) + '</select></div>' +
+        '<div class="field"><label>Allergy details <span class="field__hint">(optional)</span></label>' +
+          '<input type="text" data-person="allergy-text" maxlength="80" placeholder="severity, other allergens&hellip;"></div>';
       people.appendChild(d);
     }
     var first = people.querySelector('[data-person="name"]');
@@ -71,13 +118,21 @@
   partySize.addEventListener('input', renderPeople);
   document.getElementById('f-name').addEventListener('change', renderPeople);
 
+  // Combine a dropdown + its free-text into one readable value for the caterer
+  function combine(sel, txt) {
+    var s = (sel && sel.value) || '';
+    var t = (txt && txt.value ? txt.value.trim() : '');
+    if (s === 'Other') return t || 'Other';
+    return t ? s + ' (' + t + ')' : s;
+  }
+
   // Compose per-person inputs into the 3 fixed hidden fields ("Name: value; Name: value")
   function composeParty() {
     var names = [], diets = [], allergies = [];
     people.querySelectorAll('.person-block').forEach(function (block, i) {
       var name = (block.querySelector('[data-person="name"]').value || 'Guest ' + (i + 1)).trim();
-      var diet = (block.querySelector('[data-person="diet"]').value || 'none').trim();
-      var allergy = (block.querySelector('[data-person="allergy"]').value || 'none').trim();
+      var diet = combine(block.querySelector('[data-person="diet-select"]'), block.querySelector('[data-person="diet-text"]'));
+      var allergy = combine(block.querySelector('[data-person="allergy-select"]'), block.querySelector('[data-person="allergy-text"]'));
       names.push(name);
       diets.push(name + ': ' + diet);
       allergies.push(name + ': ' + allergy);
@@ -85,7 +140,6 @@
     document.getElementById('f-party-names').value = names.join(', ');
     document.getElementById('f-dietary').value = diets.join('; ');
     document.getElementById('f-allergies').value = allergies.join('; ');
-    // hidden fields are disabled until composed, so a "no" RSVP submits them empty
     ['f-party-names', 'f-dietary', 'f-allergies'].forEach(function (id) {
       document.getElementById(id).disabled = false;
     });
@@ -95,31 +149,34 @@
     submitBtn.disabled = on;
     submitBtn.innerHTML = on ? '<span class="spinner" aria-hidden="true"></span>Sending&hellip;' : 'Send our RSVP';
   }
-  function showState(which, detail) {
-    Object.keys(states).forEach(function (k) { states[k].classList.remove('rsvp-state--show'); });
-    if (which) {
-      states[which].classList.add('rsvp-state--show');
-      states[which].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    if (which === 'error') {
-      document.getElementById('rsvp-error-detail').textContent = detail || '';
-    }
-    form.hidden = (which === 'success');
+
+  function showError(detail) {
+    errorEl.classList.add('rsvp-state--show');
+    document.getElementById('rsvp-error-detail').textContent = detail || '';
+    errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // Success takes over: hide the header + form, reveal the big confirmation, scroll it into view
+  function showSuccess() {
+    if (rsvpHead) rsvpHead.hidden = true;
+    if (liveWrap) liveWrap.hidden = true;
+    successEl.classList.add('rsvp-success--show');
+    document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
+    errorEl.classList.remove('rsvp-state--show');
     var attendingYes = !!form.querySelector('input[name="attending"][value="yes"]:checked');
     if (attendingYes) composeParty();
-    if (!form.reportValidity()) return; // client validation -- server re-validates everything
+    if (!form.reportValidity()) return; // client checks required fields; server re-validates everything
 
     setPending(true);
     var body = new URLSearchParams(new FormData(form));
     body.set('ua', navigator.userAgent);
 
-    // URL-encoded POST = a CORS "simple request": no preflight, and Apps Script's
-    // JSON response is readable. Confirm ONLY on {ok:true} -- an opaque or non-ok
-    // response must never render the thank-you over a failed write.
+    // URL-encoded POST = a CORS "simple request": no preflight, readable JSON response.
+    // Confirm ONLY on {ok:true} -- never render success over a failed write.
     fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
@@ -127,21 +184,17 @@
     })
       .then(function (res) { return res.json(); })
       .then(function (json) {
-        if (json && json.ok === true) {
-          showState('success');
-        } else {
-          showState('error', (json && json.message) || 'The server said no. Try once more?');
-        }
+        if (json && json.ok === true) { showSuccess(); }
+        else { showError((json && json.message) || 'The server said no. Try once more?'); }
       })
       .catch(function () {
-        showState('error', 'We could not reach the RSVP server. Check your connection and try again.');
+        showError('We could not reach the RSVP server. Check your connection and try again.');
       })
       .finally(function () { setPending(false); });
   });
 
   document.getElementById('retry-btn').addEventListener('click', function () {
-    showState(null);
-    form.hidden = false;
+    errorEl.classList.remove('rsvp-state--show');
     submitBtn.focus();
   });
 })();

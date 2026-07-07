@@ -120,8 +120,9 @@ function validate(p) {
     arrivalDate = clean(p.arrival_date, 20);
     departureDate = clean(p.departure_date, 20);
     var isoDate = /^\d{4}-\d{2}-\d{2}$/;
-    if (!isoDate.test(arrivalDate)) errors.push('arrival date is required (YYYY-MM-DD)');
-    if (!isoDate.test(departureDate)) errors.push('departure date is required (YYYY-MM-DD)');
+    // arrival/departure are OPTIONAL (like flight number). Validate FORMAT only if the guest provided a value.
+    if (arrivalDate && !isoDate.test(arrivalDate)) errors.push('arrival date must be in YYYY-MM-DD format');
+    if (departureDate && !isoDate.test(departureDate)) errors.push('departure date must be in YYYY-MM-DD format');
     flightNumber = clean(p.flight_number, 20); // optional -- most guests will not have booked yet
   }
 

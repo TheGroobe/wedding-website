@@ -1,10 +1,10 @@
 /* ================================================================
-   Design system -- Coorg wedding one-pager
-   Palette + rules from the wedding print suite, reinterpreted for
-   a one-pager ("piece" = viewport-height section).
+   Design system -- Coorg wedding (warm & layered)
+   Blossom canvas throughout, faint spice-tinted section washes,
+   layered paper cards, brass ornaments, decorative rules.
    ================================================================ */
 
-/* ---- Fonts: self-hosted subsets, total budget < 100KB ---- */
+/* ---- Fonts: self-hosted subsets, total < 100KB ---- */
 @font-face {
   font-family: 'Bodoni Moda';
   src: url('fonts/bodoni-moda-regular.woff2') format('woff2');
@@ -27,23 +27,23 @@
 }
 
 :root {
-  /* ---- Palette (locked) ---- */
-  --cherry:     #6B1D28;  /* Coffee Cherry -- the lead. Headlines, seals. On Blossom/Lichen ONLY. */
-  --blossom:    #F5EFE2;  /* The canvas. Backgrounds, paper. */
-  --lichen:     #A7B29C;  /* Forest breathing through. Accents, error-state bg. */
-  --laterite:   #B65C38;  /* Coorg's red earth. Accent labels/borders only. */
-  --marigold:   #DD9C26;  /* The garland. Accent labels + the ONLY CTA fill on Peppercorn. */
-  --brass:      #A9873F;  /* Temple lamps. 1px rules ONLY -- a glint, never a wall. */
-  --peppercorn: #23291F;  /* Forest at dusk. Body ink, nav bg. */
+  --cherry:     #6B1D28;
+  --blossom:    #F5EFE2;
+  --lichen:     #A7B29C;
+  --laterite:   #B65C38;
+  --marigold:   #DD9C26;
+  --brass:      #A9873F;
+  --peppercorn: #23291F;
 
-  /* ---- Type (minimums are review findings, do not shrink) ---- */
+  --paper:      #FFFDF7;   /* layered card surface, a hair lighter than Blossom */
+  --ink-soft:   rgba(35, 41, 31, 0.72);
+  --hairline:   rgba(169, 135, 63, 0.45);
+
   --font-display: 'Bodoni Moda', 'Didot', 'Bodoni MT', serif;
   --font-text: 'Jost', 'Futura', 'Century Gothic', sans-serif;
-  --size-body: 17px;        /* Jost 400; 16px absolute floor */
-  --size-display-min: 22px; /* Bodoni regular floor */
-  --size-italic-min: 24px;  /* Bodoni italic floor (hairlines vanish smaller) */
+  --size-body: 17px;
 
-  --measure: 800px;         /* text column ~65ch reading measure */
+  --measure: 800px;
   --nav-h: 60px;
   --space: clamp(1rem, 2.5vw, 2rem);
 }
@@ -53,32 +53,61 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--blossom);
-  color: var(--peppercorn);           /* Peppercorn on Blossom ~13:1 AAA -- the default, always */
+  color: var(--peppercorn);
   font-family: var(--font-text);
-  font-weight: 400;                    /* NEVER 300/Light */
+  font-weight: 400;
   font-size: var(--size-body);
   line-height: 1.5;
 }
 
 h1, h2, h3 { font-family: var(--font-display); font-weight: 400; color: var(--cherry); line-height: 1.15; }
 h1 { font-size: clamp(34px, 6vw, 56px); }
-h2 { font-size: clamp(26px, 4vw, 38px); }
-h3 { font-size: clamp(22px, 3vw, 28px); }        /* never below --size-display-min */
-.italic-note { font-family: var(--font-display); font-style: italic; font-size: max(24px, 1.4em); }
+h2 { font-size: clamp(28px, 4.5vw, 42px); }
+h3 { font-size: clamp(22px, 3vw, 28px); }
+.italic-note { font-family: var(--font-display); font-style: italic; font-size: max(24px, 1.35em); color: var(--cherry); }
 
-.caps { font-family: var(--font-text); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; font-size: 14px; }
-
+.caps { font-family: var(--font-text); font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; font-size: 13px; }
 a { color: var(--cherry); text-underline-offset: 3px; }
 
-/* Text sections: centered column, ~65-char measure. Hero + strips run edge-to-edge. */
 .measure { max-width: var(--measure); margin-inline: auto; padding-inline: var(--space); }
+.center { text-align: center; }
 .section { padding-block: clamp(3rem, 8vw, 6rem); }
-.section + .section { border-top: 1px solid var(--brass); }  /* brass = 1px glint dividers */
-[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }        /* anchors clear the sticky nav */
-
+[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
 .section__lede { font-size: 1.1em; }
 
-/* ---- Sticky nav: appears after hero (app.js adds .nav--visible) ---- */
+/* ---- Section washes: faint spice tints over Blossom (fallback = Blossom) ---- */
+.section--tint-lichen   { background: var(--blossom); background: color-mix(in srgb, var(--lichen) 16%, var(--blossom)); }
+.section--tint-cherry   { background: var(--blossom); background: color-mix(in srgb, var(--cherry) 7%, var(--blossom)); }
+.section--tint-marigold { background: var(--blossom); background: color-mix(in srgb, var(--marigold) 13%, var(--blossom)); }
+
+/* ---- Subtle botanical paper texture (hotel section) ---- */
+.section--texture {
+  background-color: var(--blossom);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23A9873F' stroke-width='1.2' opacity='0.13'%3E%3Cpath d='M32 132 C42 102 58 96 62 70'/%3E%3Cpath d='M48 106 q-14 -4 -20 -16'/%3E%3Cpath d='M54 90 q14 -2 20 -14'/%3E%3Cpath d='M124 44 C134 74 118 84 112 108'/%3E%3Cpath d='M118 66 q14 -3 20 -15'/%3E%3Cpath d='M116 86 q-14 -3 -20 -15'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 230px 230px;
+}
+
+/* ---- Section header: centered kicker + Bodoni title + brass ornament ---- */
+.section-head { text-align: center; padding-inline: var(--space); margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+.section-head .caps { color: var(--laterite); display: block; margin-bottom: 0.6rem; }
+.section-head h2 { margin: 0; }
+
+.ornament { display: flex; align-items: center; justify-content: center; gap: 0.9rem;
+            max-width: 240px; margin: 0.9rem auto 0; color: var(--brass); }
+.ornament::before, .ornament::after { content: ""; height: 1px; background: currentColor; flex: 1; opacity: 0.75; }
+.ornament__mark { width: 7px; height: 7px; background: currentColor; transform: rotate(45deg); flex: none; }
+
+/* ---- Layered paper card ---- */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  padding: clamp(1.4rem, 4vw, 2.4rem);
+  box-shadow: 0 12px 34px -22px rgba(35, 41, 31, 0.45);
+}
+.card--form { max-width: 640px; margin-inline: auto; }
+
+/* ---- Sticky nav ---- */
 .nav {
   position: fixed; inset: 0 0 auto 0; z-index: 100; height: var(--nav-h);
   display: flex; align-items: center; gap: 1.25rem; padding-inline: var(--space);
@@ -86,54 +115,106 @@ a { color: var(--cherry); text-underline-offset: 3px; }
   transform: translateY(-100%); transition: transform 200ms ease;
 }
 .nav--visible { transform: translateY(0); }
+.nav--static { transform: translateY(0); }           /* travel.html: always shown */
 .nav__mark { font-family: var(--font-display); font-size: 22px; color: var(--blossom); text-decoration: none; }
 .nav__links { display: flex; gap: 1.25rem; margin-inline: auto; }
 .nav__links a { color: var(--blossom); text-decoration: none; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; font-size: 14px; }
 .nav__rsvp {
   margin-left: auto;
-  background: var(--marigold); color: var(--peppercorn);   /* 6.3:1 -- the ONLY approved CTA on Peppercorn */
+  background: var(--marigold); color: var(--peppercorn);
   font-weight: 500; text-decoration: none; padding: 10px 22px; border-radius: 3px;
   letter-spacing: 0.08em; text-transform: uppercase; font-size: 14px;
 }
 .nav__links + .nav__rsvp { margin-left: 0; }
 @media (max-width: 640px) {
-  .nav__links { display: none; }                            /* mobile nav = AM mark + RSVP only */
+  .nav__links { display: none; }
   .nav__rsvp { margin-left: auto; }
 }
 
-/* ---- Hero: edge-to-edge image, Blossom text panel ---- */
-.hero { position: relative; min-height: 92svh; display: grid; place-items: end center; }
+/* ---- Hero: centered, responsive, scrim over the photo ---- */
+.hero { position: relative; min-height: 100svh; display: grid; place-items: center;
+        padding: calc(var(--nav-h) + 1rem) 1rem 2rem; overflow: hidden; }
 .hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero__scrim { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(35,41,31,0.18), rgba(35,41,31,0.34)); }
 .hero__content {
-  position: relative; text-align: center; width: min(680px, 92%);
-  background: var(--blossom); border-top: 1px solid var(--brass);
-  padding: clamp(1.5rem, 4vw, 3rem); margin-bottom: clamp(1rem, 4vw, 3rem);
+  position: relative; text-align: center; width: min(680px, 100%);
+  background: var(--blossom); border: 1px solid var(--hairline); border-radius: 8px;
+  padding: clamp(1.6rem, 4vw, 3rem);
+  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.55);
 }
-.hero__names { letter-spacing: 0.22em; font-weight: 500; margin: 0; }
+.hero__names { letter-spacing: 0.22em; font-weight: 500; margin: 0; color: var(--laterite); }
 .hero__title { margin: 0.4em 0; }
-.hero__date, .hero__venue { letter-spacing: 0.14em; font-size: 15px; }
-.hero__personas { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.25rem; }
+.hero__date, .hero__venue { letter-spacing: 0.14em; font-size: 15px; margin: 0.35em 0; }
+.hero__personas { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.4rem; }
 
 /* ---- Buttons ---- */
 .btn { display: inline-block; padding: 12px 26px; border-radius: 3px; text-decoration: none;
        font-weight: 500; letter-spacing: 0.06em; border: 1px solid transparent; cursor: pointer;
        font-family: var(--font-text); font-size: 16px; }
-.btn--cherry { background: var(--cherry); color: var(--blossom); }   /* on Blossom canvas only */
+.btn--cherry { background: var(--cherry); color: var(--blossom); }
 .btn--ghost  { background: transparent; color: var(--peppercorn); border-color: var(--peppercorn); }
 .btn--marigold { background: var(--marigold); color: var(--peppercorn); }
+.btn--block { display: block; width: 100%; text-align: center; }
 .btn:disabled { opacity: 0.6; cursor: wait; }
 
-/* ---- Callout (visa/essentials): Cherry text on Blossom, Laterite accent border ---- */
-.section--callout { background: var(--blossom); }
-.section--callout .measure { border-left: 4px solid var(--laterite); }
+/* ---- Visa callout accent ---- */
 .callout__title { color: var(--cherry); }
 
-/* ---- Hotel: bold "do not book" block (Cherry text on Blossom, Cherry border) ---- */
-.callout--stop { border: 2px solid var(--cherry); border-radius: 3px; padding: 1.25rem 1.5rem; margin-block: 1.5rem; }
+/* ---- Hotel "do not book" block ---- */
+.callout--stop { border: 2px solid var(--cherry); border-radius: 4px; padding: 1.25rem 1.5rem; margin-block: 1.5rem;
+                 background: color-mix(in srgb, var(--cherry) 4%, var(--paper)); }
 .callout--stop h3 { margin-top: 0; }
 
-/* ---- Travel strips: full-width editorial rows, spice ACCENTS not washes ---- */
+/* ---- Schedule: clickable timeline of ceremony cards ---- */
+.timeline { display: grid; gap: 1rem; margin-top: 1.5rem; }
+.event {
+  display: grid; grid-template-columns: minmax(120px, auto) 1fr auto; align-items: center; gap: 0.5rem 1.25rem;
+  width: 100%; text-align: left; font: inherit; color: var(--peppercorn); cursor: pointer;
+  background: var(--paper); border: 1px solid var(--hairline); border-radius: 6px;
+  padding: 1.1rem 1.3rem; box-shadow: 0 10px 26px -20px rgba(35, 41, 31, 0.45);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.event:hover { transform: translateY(-2px); box-shadow: 0 16px 32px -20px rgba(35, 41, 31, 0.55); }
+.event:focus-visible { outline: 2px solid var(--cherry); outline-offset: 2px; }
+.event__label { justify-self: start; align-self: center; font-family: var(--font-text);
+                font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; font-size: 13px;
+                padding: 5px 11px; border: 1px solid currentColor; border-radius: 2px; white-space: nowrap; }
+.event__label--lichen   { color: #5d6852; }
+.event__label--marigold { color: #8a5f12; }
+.event__label--laterite { color: var(--laterite); }
+.event__label--cherry   { color: var(--cherry); }
+.event__body { display: grid; gap: 0.15rem; }
+.event__day { font-weight: 500; }
+.event__teaser { color: var(--ink-soft); font-size: 0.96em; }
+.event__more { color: var(--cherry); font-weight: 500; font-size: 0.9em; white-space: nowrap; }
+@media (max-width: 560px) {
+  .event { grid-template-columns: 1fr auto; }
+  .event__label { grid-column: 1 / -1; }
+}
+
+/* ---- Ceremony modal ---- */
+.modal { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1.25rem; }
+.modal[hidden] { display: none; }
+.modal__backdrop { position: absolute; inset: 0; background: rgba(35, 41, 31, 0.55); }
+.modal__panel {
+  position: relative; background: var(--blossom); border: 1px solid var(--brass); border-radius: 8px;
+  max-width: 520px; width: 100%; max-height: 85vh; overflow: auto;
+  padding: clamp(1.6rem, 4vw, 2.5rem); box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.55);
+}
+.modal__close { position: absolute; top: 0.4rem; right: 0.7rem; background: none; border: none;
+                font-size: 32px; line-height: 1; color: var(--peppercorn); cursor: pointer; padding: 4px 10px; }
+.modal__eyebrow { color: var(--laterite); margin: 0 0 0.3rem; }
+.modal__title { margin: 0 0 0.9rem; }
+.modal__body p { margin: 0 0 0.8rem; }
+.modal__body p:last-child { margin-bottom: 0; }
+
+/* ---- Travel guide strips (used by travel.html) ---- */
+.page-head { padding: calc(var(--nav-h) + 2.5rem) 0 2rem; text-align: center; }
+.page-head__kicker { color: var(--laterite); }
+.page-head .section__lede { text-align: left; }
+
 .strip { border-top: 4px solid; background: var(--blossom); padding: clamp(2rem, 5vw, 4rem) 0; }
+.strip:nth-of-type(even) { background: color-mix(in srgb, var(--lichen) 8%, var(--blossom)); }
 .strip--laterite { border-color: var(--laterite); }
 .strip--marigold { border-color: var(--marigold); }
 .strip--cherry   { border-color: var(--cherry); }
@@ -144,50 +225,49 @@ a { color: var(--cherry); text-underline-offset: 3px; }
 @media (min-width: 900px) { .strip__inner { grid-template-columns: 5fr 4fr; align-items: center; } }
 .strip__label { font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; font-size: 14px; }
 .strip--laterite .strip__label { color: var(--laterite); }
-.strip--marigold .strip__label { color: #8a5f12; }   /* darkened marigold for small text on Blossom */
+.strip--marigold .strip__label { color: #8a5f12; }
 .strip--cherry   .strip__label { color: var(--cherry); }
-.strip--lichen   .strip__label { color: #5d6852; }   /* darkened lichen for small text on Blossom */
+.strip--lichen   .strip__label { color: #5d6852; }
 .strip__path { font-weight: 500; }
 .strip__aside { font-style: italic; color: #5d6852; }
 .strip__facts-list { padding-left: 1.1rem; }
-.strip__img { width: 100%; height: auto; border: 1px solid var(--brass); }
-.strip__facts { border-top: 1px solid var(--brass); padding-top: 0.75rem; font-size: 16px; }
-
-/* ---- Schedule: spice-colored event LABELS on the shared Blossom canvas ---- */
-.event { display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding-block: 1.25rem;
-         border-bottom: 1px solid var(--brass); }
-.event__label { align-self: start; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-                font-size: 14px; padding: 4px 10px; border: 1px solid currentColor; border-radius: 2px; }
-.event__label--lichen   { color: #5d6852; }   /* Welcome Dinner */
-.event__label--marigold { color: #8a5f12; }   /* Haldi */
-.event__label--laterite { color: var(--laterite); }  /* Mehendi & Sangeet (4.0:1, AA large/bold) */
-.event__label--cherry   { color: var(--cherry); }    /* Ceremony + Reception */
-.event h3 { margin: 0; }
+.strip__img { width: 100%; height: auto; border: 1px solid var(--brass); border-radius: 4px;
+              box-shadow: 0 14px 34px -22px rgba(35, 41, 31, 0.5); }
+.strip__facts { border-top: 1px solid var(--hairline); padding-top: 0.75rem; font-size: 16px; }
 
 /* ---- RSVP form + states ---- */
-.rsvp__deadline { font-size: 1.05em; }
+.rsvp__deadline { font-size: 1.05em; margin-bottom: 1.5rem; }
 .form-grid { display: grid; gap: 1.1rem; }
 .field label { display: block; font-weight: 500; margin-bottom: 4px; }
-.field legend { font-weight: 500; margin-bottom: 4px; }
+.field legend { font-weight: 500; margin-bottom: 6px; }
+.radio { display: inline-flex; align-items: center; gap: 0.4rem; margin-right: 1.5rem; font-weight: 400; }
 .field input, .field select, .field textarea {
   width: 100%; padding: 12px; font: inherit; color: var(--peppercorn);
   background: #fff; border: 1px solid var(--peppercorn); border-radius: 3px;
 }
-.field input[type="radio"] { width: auto; margin-right: 0.5rem; }
+.field input[type="radio"] { width: auto; margin: 0; }
 .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
   outline: 2px solid var(--cherry); outline-offset: 1px;
 }
-.field__hint { font-weight: 400; font-size: 15px; opacity: 0.8; }
-.person-block { border-left: 2px solid var(--lichen); padding-left: 1rem; margin-block: 1rem; display: grid; gap: 0.75rem; }
+.field__hint { font-weight: 400; font-size: 15px; color: var(--ink-soft); }
+.person-block { border-left: 3px solid var(--lichen); padding-left: 1rem; margin-block: 1.25rem; display: grid; gap: 0.75rem; }
+.person-block__name { font-weight: 500; color: var(--cherry); font-family: var(--font-display); font-size: 20px; }
 .hp { position: absolute !important; left: -9999px !important; opacity: 0; pointer-events: none; }
 
-.rsvp-state { display: none; padding: 1.25rem; border-radius: 3px; }
+.rsvp-state { display: none; padding: 1.25rem; border-radius: 4px; margin-top: 1rem; }
 .rsvp-state--show { display: block; }
-.rsvp-success { background: var(--blossom); border: 1px solid var(--brass); }
-.rsvp-error   { background: var(--lichen); color: var(--peppercorn); }  /* warm, not alarming */
-.rsvp-error .btn { background: var(--cherry); color: var(--blossom); }  /* Cherry on Lichen 5.2:1 AA */
-.rsvp-closed  { font-family: var(--font-display); font-style: italic; font-size: 24px; }
-/* #form-error is a .rsvp-error but must stay hidden until app.js needs it (kept via .rsvp-state default:none) */
+.rsvp-error   { background: var(--lichen); color: var(--peppercorn); }
+.rsvp-error .btn { background: var(--cherry); color: var(--blossom); }
+.rsvp-closed  { font-family: var(--font-display); font-style: italic; font-size: 24px; color: var(--cherry); }
+
+/* Success takeover: hidden until app.js reveals it, then dominates the section */
+.rsvp-success { display: none; }
+.rsvp-success--show { display: grid; place-items: center; text-align: center; min-height: 62vh; padding: 2rem var(--space); }
+.rsvp-success__inner { max-width: 640px; }
+.rsvp-success__inner .caps { color: var(--laterite); }
+.rsvp-success__headline { font-size: clamp(42px, 9vw, 76px); line-height: 1.03; margin: 0.35em 0 0.5em; }
+.rsvp-success__sub { font-size: 1.12em; margin-bottom: 1.5rem; }
+
 .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--blossom);
            border-top-color: transparent; border-radius: 50%; vertical-align: -4px; margin-right: 8px;
            animation: spin 0.8s linear infinite; }
@@ -195,8 +275,7 @@ a { color: var(--cherry); text-underline-offset: 3px; }
 
 /* ---- Contact + footer ---- */
 .section--contact { text-align: center; }
-.footer { background: var(--peppercorn); color: var(--blossom); text-align: center;
-          padding: 2.5rem var(--space); }
+.footer { background: var(--peppercorn); color: var(--blossom); text-align: center; padding: 2.5rem var(--space); }
 .footer__mark { font-family: var(--font-display); font-size: 22px; margin: 0 0 0.5rem; }
 .footer__updated { font-size: 14px; letter-spacing: 0.08em; opacity: 0.85; margin: 0; }
 
@@ -204,5 +283,5 @@ img { max-width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .spinner { animation-duration: 2s; }
-  .nav { transition: none; }
+  .nav, .event { transition: none; }
 }
