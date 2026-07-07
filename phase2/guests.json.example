@@ -1,0 +1,17 @@
+{
+  "k7m2xq": {
+    "greeting": "Priya & Family",
+    "members": ["Priya", "Dev", "Aanya"],
+    "origin": "local"
+  },
+  "j4wn8p": {
+    "greeting": "The Hendersons",
+    "members": ["Mark", "Sarah"],
+    "origin": "international"
+  },
+  "q9rt2v": {
+    "greeting": "Uncle Ravi",
+    "members": ["Ravi"],
+    "origin": "regional"
+  }
+}
