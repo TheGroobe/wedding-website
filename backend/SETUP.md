@@ -120,6 +120,20 @@ Do it once. Total time: ~30–40 minutes. You need **your own personal Google ac
 
 ## 5. Test it
 
+**Optional 10-second smoke test from a terminal** (proves the endpoint is alive without
+writing anything to your Sheet — it uses the spam-trap path, which the server accepts but
+never stores). Replace the URL with your `/exec` URL:
+
+```bash
+curl -sL --data-urlencode 'website=smoke' --data-urlencode 'name=x' 'PASTE_EXEC_URL_HERE'
+# expected: {"ok":true,"message":"Thank you!"}   (and NO new row in the Sheet)
+```
+
+Note: do **not** add `-X POST` — with `curl -L`, `-X POST` makes it re-POST to Google's
+redirect target and you'll get a "Page Not Found" error. Letting `--data` imply POST is correct.
+
+**The real test:**
+
 1. Open your live wedding site.
 2. Fill in a fake RSVP with your own email and hit **Send our RSVP**.
    - *You should see:* the button shows a spinner + "Sending…" for a few seconds (Google's server

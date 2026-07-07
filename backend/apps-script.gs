@@ -7,9 +7,9 @@
 
 // ---- CONFIG: fill these two in before deploying ----
 var SHEET_ID = 'PASTE_SHEET_ID_HERE';        // from the Sheet URL (Task 3)
-var NOTIFY_EMAIL = 'PASTE_ALEX_EMAIL_HERE';  // where notifications go
+var NOTIFY_EMAIL = 'awgrube@gmail.com';       // where notifications go (must match what you set in the DEPLOYED copy)
 var MAX_SUBMISSIONS = 150;                    // submission cap (~100 guests + margin)
-var WEB_APP_URL = 'PASTE_EXEC_URL_HERE';     // filled in AFTER first deploy (Task 7); used by heartbeat
+var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzbGhyVR3FiaieY2UerRWDaaKYw1XUYkf2OHt2VOL0OVXFnO0XDLP0ILLbrgkDyjsax/exec'; // used by the weekly heartbeat self-test
 
 var VALID_AIRPORTS = ['IXE', 'OTHER', 'NOT_SURE']; // IXE is the designated airport for all guests; OTHER = tell us on WhatsApp
 

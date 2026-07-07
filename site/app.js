@@ -2,7 +2,7 @@
   'use strict';
 
   // ==== CONFIG ====
-  var ENDPOINT = 'PASTE_EXEC_URL_HERE'; // the pinned /exec URL from Task 7 -- MUST end in /exec, never /dev
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzbGhyVR3FiaieY2UerRWDaaKYw1XUYkf2OHt2VOL0OVXFnO0XDLP0ILLbrgkDyjsax/exec'; // pinned /exec URL — update via Manage deployments > edit, never New deployment
   var DEADLINE_UTC = Date.UTC(2026, 9, 2, 6, 59, 59); // Oct 1, 2026 23:59:59 Pacific (PDT = UTC-7)
 
   // ==== Sticky nav: appear once the hero scrolls away ====
