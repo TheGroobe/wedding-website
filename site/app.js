@@ -65,10 +65,18 @@
   var closedEl = document.getElementById('rsvp-closed');
 
   var DIET_OPTIONS = ['No restrictions', 'Vegetarian', 'Vegan', 'No beef', 'No pork', 'Halal', 'Jain', 'Gluten-free', 'Other'];
-  var ALLERGY_OPTIONS = ['None', 'Peanuts', 'Tree nuts', 'Shellfish', 'Dairy', 'Eggs', 'Gluten', 'Soy', 'Other'];
+  // Allergies are multi-pick: checkboxes, check all that apply. Nothing checked = none;
+  // the free-text field catches anything not listed (so no 'None'/'Other' entries needed).
+  var ALLERGY_CHECKS = ['Peanuts', 'Tree nuts', 'Shellfish', 'Dairy', 'Eggs', 'Gluten', 'Soy'];
 
   function optionsHtml(list) {
     return list.map(function (o) { return '<option value="' + o + '">' + o + '</option>'; }).join('');
+  }
+
+  function checksHtml(list) {
+    return list.map(function (a) {
+      return '<label class="radio"><input type="checkbox" data-person="allergy-check" value="' + a + '"> ' + a + '</label>';
+    }).join('');
   }
 
   // Deadline: client-side courtesy gate -- the server keeps accepting (graceful, not hard-cut)
@@ -106,10 +114,10 @@
           '<select data-person="diet-select">' + optionsHtml(DIET_OPTIONS) + '</select></div>' +
         '<div class="field"><label>Anything to add? <span class="field__hint">(optional)</span></label>' +
           '<input type="text" data-person="diet-text" maxlength="80" placeholder="e.g. no onion or garlic, low spice&hellip;"></div>' +
-        '<div class="field"><label>Allergies</label>' +
-          '<select data-person="allergy-select">' + optionsHtml(ALLERGY_OPTIONS) + '</select></div>' +
-        '<div class="field"><label>Allergy details <span class="field__hint">(optional)</span></label>' +
-          '<input type="text" data-person="allergy-text" maxlength="80" placeholder="severity, other allergens&hellip;"></div>';
+        '<fieldset class="field"><legend>Allergies <span class="field__hint">(check all that apply)</span></legend>' +
+          '<div class="checks">' + checksHtml(ALLERGY_CHECKS) + '</div></fieldset>' +
+        '<div class="field"><label>Other allergies or severity <span class="field__hint">(optional)</span></label>' +
+          '<input type="text" data-person="allergy-text" maxlength="80" placeholder="e.g. sesame; peanuts are severe&hellip;"></div>';
       people.appendChild(d);
     }
     var first = people.querySelector('[data-person="name"]');
@@ -132,7 +140,15 @@
     people.querySelectorAll('.person-block').forEach(function (block, i) {
       var name = (block.querySelector('[data-person="name"]').value || 'Guest ' + (i + 1)).trim();
       var diet = combine(block.querySelector('[data-person="diet-select"]'), block.querySelector('[data-person="diet-text"]'));
-      var allergy = combine(block.querySelector('[data-person="allergy-select"]'), block.querySelector('[data-person="allergy-text"]'));
+      // Allergies: gather every checked box, then append the free-text (other allergens/severity)
+      var picked = [];
+      block.querySelectorAll('[data-person="allergy-check"]').forEach(function (cb) {
+        if (cb.checked) picked.push(cb.value);
+      });
+      var extra = (block.querySelector('[data-person="allergy-text"]').value || '').trim();
+      var allergy = picked.join(', ');
+      if (extra) allergy = allergy ? allergy + ' (' + extra + ')' : extra;
+      if (!allergy) allergy = 'none';
       names.push(name);
       diets.push(name + ': ' + diet);
       allergies.push(name + ': ' + allergy);

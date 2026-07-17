@@ -263,6 +263,10 @@ a { color: var(--cherry); text-underline-offset: 3px; }
 .field label { display: block; font-weight: 500; margin-bottom: 4px; }
 .field legend { font-weight: 500; margin-bottom: 6px; }
 .radio { display: inline-flex; align-items: center; gap: 0.4rem; margin-right: 1.5rem; font-weight: 400; }
+fieldset.field { border: 0; padding: 0; margin: 0; min-width: 0; }
+.checks { display: flex; flex-wrap: wrap; gap: 0.45rem 0.25rem; }
+.checks .radio { margin-right: 1.1rem; white-space: nowrap; }
+.checks input[type="checkbox"] { width: auto; margin: 0; accent-color: var(--cherry); }
 .field input, .field select, .field textarea {
   width: 100%; padding: 12px; font: inherit; color: var(--peppercorn);
   background: #fff; border: 1px solid var(--peppercorn); border-radius: 3px;
