@@ -18,7 +18,7 @@ function doPost(e) {
   try {
     lock.waitLock(10000); // wait up to 10s for concurrent submissions
   } catch (err) {
-    return jsonOut({ ok: false, message: 'The line is busy -- please tap Send again in a few seconds.' });
+    return jsonOut({ ok: false, message: 'The line is busy. Please tap Send again in a few seconds.' });
   }
   try {
     var p = (e && e.parameter) || {};
@@ -39,7 +39,7 @@ function doPost(e) {
 
     // Submission cap (abuse protection; Log row 1 is the header)
     if (log.getLastRow() - 1 >= MAX_SUBMISSIONS) {
-      return jsonOut({ ok: false, message: 'RSVPs are closed online -- please WhatsApp us and we will add you by hand.' });
+      return jsonOut({ ok: false, message: 'RSVPs are closed online. Please WhatsApp us and we will add you by hand.' });
     }
 
     // APPEND-ONLY, by header lookup (never positional, never overwrite)
@@ -65,14 +65,14 @@ function doPost(e) {
 
     notifyAlex(record); // per-submission email (T4); never blocks the guest
 
-    return jsonOut({ ok: true, message: 'RSVP received -- thank you!' });
+    return jsonOut({ ok: true, message: 'RSVP received. Thank you!' });
   } catch (err) {
     try {
       MailApp.sendEmail(NOTIFY_EMAIL, '[Wedding RSVP] ERROR in doPost',
         'A submission FAILED at ' + new Date() + '\n\n' + (err && err.stack || err) +
         '\n\nPayload: ' + JSON.stringify((e && e.parameter) || {}));
     } catch (ignore) {}
-    return jsonOut({ ok: false, message: 'Something went wrong on our end. Please try again -- or WhatsApp us and we will record it by hand.' });
+    return jsonOut({ ok: false, message: 'Something went wrong on our end. Please try again, or WhatsApp us and we will record it by hand.' });
   } finally {
     lock.releaseLock();
   }

@@ -188,7 +188,7 @@
         else { showError((json && json.message) || 'The server said no. Try once more?'); }
       })
       .catch(function () {
-        showError('We could not reach the RSVP server. Check your connection and try again.');
+        showError('We couldn\'t reach the RSVP server. Check your connection and try again.');
       })
       .finally(function () { setPending(false); });
   });
