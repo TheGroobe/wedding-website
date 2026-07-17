@@ -17,16 +17,21 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="fonts/bodoni-moda-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair-display-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair-display.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/jost-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="images/hero.avif" as="image" type="image/avif">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
-  <!-- Sticky nav: hidden over hero, appears on scroll (app.js toggles .nav--visible). -->
+  <!-- Fixed nav: transparent over the hero, solid after 60px of scroll (app.js
+       toggles .nav--scrolled). The monogram crossfades from blossom to two-ink. -->
   <nav class="nav" id="nav" aria-label="Site">
-    <a class="nav__mark" href="#top">A&amp;M</a>
+    <a class="nav__logo" href="#top">
+      <img class="logo-ink" src="images/logo.png" alt="A&amp;M, Alex &amp; Megana">
+      <img class="logo-blossom" src="images/logo-blossom.png" alt="" aria-hidden="true">
+    </a>
     <div class="nav__links">
       <a href="travel.html">Travel</a>
       <a href="#schedule">Schedule</a>
@@ -45,29 +50,29 @@
     </picture>
     <div class="hero__scrim"></div>
     <div class="hero__content">
-      <p class="hero__names">ALEX &amp; MEGANA</p>
-      <h1 class="hero__title">Two days in the Western Ghats</h1>
-      <p class="hero__date">JANUARY 5-6, 2027 &middot; COORG, INDIA</p>
+      <p class="hero__names">Alex &amp; Megana</p>
+      <div class="ornament" aria-hidden="true"><span class="ornament__mark"></span></div>
+      <h1 class="hero__title">Two days in the<br>Western Ghats</h1>
+      <p class="hero__date">January 5-6, 2027 &middot; Coorg, India</p>
       <p class="hero__venue">Coorg Marriott Resort &amp; Spa &middot; Madikeri, Karnataka</p>
-      <div class="hero__personas">
-        <a class="btn btn--cherry" href="#rsvp">RSVP</a>
-        <a class="btn btn--ghost" href="travel.html">Travel guide</a>
-        <a class="btn btn--ghost" href="#schedule">The wedding</a>
+      <div class="hero__actions">
+        <a class="btn" href="#rsvp">RSVP</a>
+        <a class="btn btn--outline-light" href="travel.html">Travel guide</a>
+        <a class="btn btn--outline-light" href="#schedule">The wedding</a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- ============ VISA / ESSENTIALS ============ -->
-    <section class="section section--tint-lichen" id="essentials">
-      <div class="section-head">
-        <p class="caps">First things first</p>
-        <h2 class="callout__title">Before anything else: your visa</h2>
-        <div class="ornament" aria-hidden="true"><span class="ornament__mark"></span></div>
-      </div>
-      <div class="measure card">
-        <p>U.S. passport holders need an <strong>Indian e-Visa</strong>. It&rsquo;s a simple online form, but do it early.</p>
-        <ul>
+    <!-- ============ VISA (dark band) ============ -->
+    <section class="band" id="essentials">
+      <div class="visa-grid">
+        <div>
+          <p class="kicker kicker--gold">First things first</p>
+          <h2>Before anything else: your&nbsp;visa</h2>
+          <p class="intro">U.S. passport holders need an <strong>Indian e-Visa</strong>. It&rsquo;s a simple online form, but do it early.</p>
+        </div>
+        <ul class="dlist dlist--dark">
           <li>Apply ONLY at the official government site: <a href="https://indianvisaonline.gov.in" rel="noopener">indianvisaonline.gov.in</a>. Third-party &ldquo;visa services&rdquo; charge triple for the same thing.</li>
           <li>Choose the 30-day e-Tourist visa (~US$25). Approval typically takes 3-7 days; you&rsquo;ll print the approval and show it on arrival.</li>
           <li><strong>Apply by early December.</strong> That leaves room for a photo re-upload or a slow week without touching your trip.</li>
@@ -76,92 +81,92 @@
       </div>
     </section>
 
-    <!-- ============ SCHEDULE (clickable events -> ceremony popups) ============ -->
-    <section class="section section--tint-cherry section--schedule" id="schedule">
+    <!-- ============ SCHEDULE ============ -->
+    <section class="section" id="schedule">
       <div class="section-head">
-        <p class="caps">The celebration</p>
+        <p class="kicker">The celebration</p>
         <h2>The two days</h2>
         <div class="ornament" aria-hidden="true"><span class="ornament__mark"></span></div>
-      </div>
-      <div class="measure">
-        <p class="section__lede center">Two days, one hillside. Tap any event to see what it is;
+        <p class="lede">Two days, one hillside. Tap any event to see what it is;
            timings and dress codes will land here as we lock them.</p>
+      </div>
 
-        <div class="timeline">
-          <h3 class="day-head caps">Day One &middot; Tuesday, January 5</h3>
+      <div class="days">
+        <div class="day">
+          <h3>Day One <em>&middot; Tuesday, January 5</em></h3>
 
           <button type="button" class="event" data-event="haldi" data-title="What&rsquo;s a Haldi?" data-when="Day One &middot; Tuesday, January 5 &middot; afternoon">
-            <span class="event__label event__label--marigold">Haldi</span>
-            <span class="event__body">
-              <span class="event__day">Afternoon</span>
-              <span class="event__teaser">Turmeric, laughter, and a wedding-day glow.</span>
+            <span class="event__top">
+              <span class="event__name">Haldi</span>
+              <span class="event__time">Afternoon</span>
             </span>
+            <span class="event__teaser">Turmeric, laughter, and a wedding-day glow.</span>
             <span class="event__more">What&rsquo;s this? &rarr;</span>
           </button>
 
           <button type="button" class="event" data-event="carnival" data-title="The Carnival" data-when="Day One &middot; Tuesday, January 5">
-            <span class="event__label event__label--laterite">Carnival</span>
-            <span class="event__body">
-              <span class="event__day">Following the Haldi</span>
-              <span class="event__teaser">A festive mela of food counters and keepsake stalls.</span>
+            <span class="event__top">
+              <span class="event__name">Carnival</span>
+              <span class="event__time">Following the Haldi</span>
             </span>
+            <span class="event__teaser">A festive mela of food counters and keepsake stalls.</span>
             <span class="event__more">What&rsquo;s this? &rarr;</span>
           </button>
+        </div>
 
-          <h3 class="day-head caps">Day Two &middot; Wednesday, January 6</h3>
+        <div class="day">
+          <h3>Day Two <em>&middot; Wednesday, January 6</em></h3>
 
           <button type="button" class="event" data-event="sadhya" data-title="The Sadhya" data-when="Day Two &middot; Wednesday, January 6 &middot; lunch">
-            <span class="event__label event__label--lichen">Sadhya</span>
-            <span class="event__body">
-              <span class="event__day">Lunch</span>
-              <span class="event__teaser">A traditional feast served on a banana leaf. Come hungry.</span>
+            <span class="event__top">
+              <span class="event__name">Sadhya</span>
+              <span class="event__time">Lunch</span>
             </span>
+            <span class="event__teaser">A traditional feast served on a banana leaf. Come hungry.</span>
             <span class="event__more">What&rsquo;s this? &rarr;</span>
           </button>
 
           <button type="button" class="event" data-event="wedding" data-title="The Wedding" data-when="Day Two &middot; Wednesday, January 6">
-            <span class="event__label event__label--cherry">Wedding</span>
-            <span class="event__body">
-              <span class="event__day">Following the Sadhya</span>
-              <span class="event__teaser">The main event, in the hills.</span>
+            <span class="event__top">
+              <span class="event__name">Wedding</span>
+              <span class="event__time">Following the Sadhya</span>
             </span>
+            <span class="event__teaser">The main event, in the hills.</span>
             <span class="event__more">What&rsquo;s this? &rarr;</span>
           </button>
 
           <button type="button" class="event" data-event="reception" data-title="The Reception" data-when="Day Two &middot; Wednesday, January 6">
-            <span class="event__label event__label--cherry">Reception</span>
-            <span class="event__body">
-              <span class="event__day">Following the wedding</span>
-              <span class="event__teaser">Dinner and dancing, then the toasts.</span>
+            <span class="event__top">
+              <span class="event__name">Reception</span>
+              <span class="event__time">Following the wedding</span>
             </span>
+            <span class="event__teaser">Dinner and dancing, then the toasts.</span>
             <span class="event__more">What&rsquo;s this? &rarr;</span>
           </button>
 
           <button type="button" class="event" data-event="afterparty" data-title="The Afterparty" data-when="Day Two &middot; Wednesday, January 6 &middot; late night">
-            <span class="event__label event__label--marigold">Afterparty</span>
-            <span class="event__body">
-              <span class="event__day">Late night</span>
-              <span class="event__teaser">The reception winds down. The party doesn&rsquo;t.</span>
+            <span class="event__top">
+              <span class="event__name">Afterparty</span>
+              <span class="event__time">Late night</span>
             </span>
+            <span class="event__teaser">The reception winds down. The party doesn&rsquo;t.</span>
             <span class="event__more">What&rsquo;s this? &rarr;</span>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- ============ HOTEL (cream + leaf texture) ============ -->
-    <section class="section section--texture" id="hotel">
-      <div class="section-head">
-        <p class="caps">Your home base</p>
-        <h2>Where you&rsquo;re staying</h2>
-        <div class="ornament" aria-hidden="true"><span class="ornament__mark"></span></div>
-      </div>
-      <div class="measure card">
-        <p><strong><a href="https://www.marriott.com/en-us/hotels/ixemc-coorg-marriott-resort-and-spa/overview/" target="_blank" rel="noopener">Coorg Marriott Resort &amp; Spa</a></strong>, Somwarpet Rd, Makkandur Village, Kodagu District,
-           Madikeri, Karnataka 571201, India. 37 acres of forest in the UNESCO-listed Western Ghats;
-           108 rooms, villas, and cottages. The whole celebration happens on the property.</p>
-
-        <div class="callout--stop" role="note">
+    <!-- ============ HOTEL (dark photo band) ============ -->
+    <section class="band band--hotel" id="hotel">
+      <div class="hotel-grid">
+        <div>
+          <p class="kicker kicker--gold">Your home base</p>
+          <h2>Where you&rsquo;re staying</h2>
+          <p class="about"><strong><a href="https://www.marriott.com/en-us/hotels/ixemc-coorg-marriott-resort-and-spa/overview/" target="_blank" rel="noopener">Coorg Marriott Resort &amp; Spa</a></strong>, Somwarpet Rd, Makkandur Village, Kodagu District,
+             Madikeri, Karnataka 571201, India. 37 acres of forest in the UNESCO-listed Western Ghats;
+             108 rooms, villas, and cottages. The whole celebration happens on the property.</p>
+        </div>
+        <div class="panel-stop" role="note">
           <h3>Do NOT book the Marriott yourself</h3>
           <p><strong>Your room for the wedding is booked and paid for. It&rsquo;s on us.</strong>
              For the nights of January 5 and 6 you don&rsquo;t need to reserve anything or pay anything.
@@ -172,82 +177,133 @@
              the extra nights with the hotel at a better rate than you&rsquo;d get on your own. Those
              nights are on you.</p>
         </div>
-
       </div>
     </section>
 
     <!-- ============ GETTING THERE ============ -->
     <section class="section" id="getting-there">
       <div class="section-head">
-        <p class="caps">Arriving &amp; getting ready</p>
+        <p class="kicker">Arriving &amp; getting ready</p>
         <h2>Getting there</h2>
         <div class="ornament" aria-hidden="true"><span class="ornament__mark"></span></div>
       </div>
-      <div class="measure card" id="getting-there-content">
-        <h3>One airport: Mangaluru (IXE)</h3>
+      <div class="gt-measure">
+        <h3>One airport: <em>Mangaluru (IXE)</em></h3>
         <p><strong>Everyone flies into Mangaluru International (IXE), no matter where you start.</strong> Put your flight in the RSVP and we&rsquo;ll coordinate your pickup; the stay at the resort starts <strong>January 5</strong>, and it&rsquo;s a scenic 3.5-4 hr drive up.</p>
-        <p>Why IXE? It&rsquo;s a small, easy airport (no mega-terminal chaos for first-time travelers), it has a <strong>direct Air India Express flight from Dubai</strong>, and it connects by short domestic hop from all three of India&rsquo;s big international hubs:</p>
-        <ul>
-          <li><strong>From Bangalore (BLR):</strong> 1-hr nonstop hop, ~$50 even in the wedding week, six-plus daily (IndiGo, Air India Express)</li>
-          <li><strong>From Delhi (DEL):</strong> ~3 hr nonstop, daily (IndiGo, Air India, Air India Express)</li>
-          <li><strong>From Mumbai (BOM):</strong> ~1.5 hr domestic, multiple daily options</li>
-        </ul>
-        <p>Flying in from far away? Our <a href="travel.html">travel guide</a> lays out four ways to break up the trip, but your last flight is always the same: <strong>a short hop into IXE.</strong></p>
+        <p style="margin-bottom:2rem;">Why IXE? It&rsquo;s a small, easy airport (no mega-terminal chaos for first-time travelers), it has direct flights to the Dubai, Doha, and Abu Dhabi hubs, and it connects by short domestic hop from all three of India&rsquo;s big international hubs:</p>
 
-        <h3>Money</h3>
-        <ul>
-          <li>Currency is the Indian Rupee (&#8377;). Cards work at the resort; carry ~&#8377;5,000 (&asymp;$60) in cash for small stops. Airport ATMs are the easy source.</li>
-          <li>Tell your bank you&rsquo;re traveling. No need to buy rupees in the U.S.</li>
-        </ul>
+        <div class="hubs">
+          <div class="hub">
+            <div class="hub__code">BLR</div>
+            <div class="hub__name">From Bangalore</div>
+            <div class="hub__desc">1-hr nonstop hop, ~$50 even in the wedding week, six-plus daily</div>
+          </div>
+          <div class="hub">
+            <div class="hub__code">DEL</div>
+            <div class="hub__name">From Delhi</div>
+            <div class="hub__desc">~3 hr nonstop, daily</div>
+          </div>
+          <div class="hub">
+            <div class="hub__code">BOM</div>
+            <div class="hub__name">From Mumbai</div>
+            <div class="hub__desc">~1.5 hr domestic, multiple daily options</div>
+          </div>
+        </div>
 
-        <h3>Phone</h3>
-        <ul>
-          <li>Easiest: an eSIM (Airalo or similar) bought before you fly. You&rsquo;ll have working data the minute you land.</li>
-          <li>Physical SIMs at the airport need your passport photo page; fine, just slower.</li>
-          <li>WhatsApp is how India communicates. Install it before you leave; it&rsquo;s also how you reach us.</li>
-        </ul>
+        <p style="margin-bottom:3rem;">Flying in from far away? Our <a href="travel.html">travel guide</a> lays out four ways to break up the trip, but your last flight is always the same: <strong>a short hop into IXE.</strong></p>
 
-        <h3>Power, weather, packing</h3>
-        <ul>
-          <li>India uses Type C/D/M plugs, 230V. Pack a universal adapter; your phone charger handles the voltage.</li>
-          <li>January in Coorg: gorgeous. Days 75-80&deg;F, evenings 50-55&deg;F in the hills, so bring a real layer for nights.</li>
-          <li>Comfortable shoes (the resort is 37 acres), sunscreen, insect repellent, any prescription meds in original packaging.</li>
-        </ul>
-
-        <h3>Good to know</h3>
-        <ul>
-          <li>Tap water: don&rsquo;t. Bottled/filtered water is everywhere, including the resort.</li>
-          <li>Shoes come off at temples and homes; shoulders/knees covered at religious sites.</li>
-          <li>Head-wobble means yes. Usually.</li>
-        </ul>
+        <div class="info-grid">
+          <div class="igroup">
+            <h3>Money</h3>
+            <ul class="dlist dlist--tight">
+              <li>Currency is the Indian Rupee (&#8377;). Cards work at the resort; carry ~&#8377;5,000 (&asymp;$60) in cash for small stops. Airport ATMs are the easy source.</li>
+              <li>Tell your bank you&rsquo;re traveling. No need to buy rupees in the U.S.</li>
+            </ul>
+          </div>
+          <div class="igroup">
+            <h3>Phone</h3>
+            <ul class="dlist dlist--tight">
+              <li>Easiest: an eSIM (Airalo or similar) bought before you fly. You&rsquo;ll have working data the minute you land.</li>
+              <li>Physical SIMs at the airport need your passport photo page; fine, just slower.</li>
+              <li>WhatsApp is how India communicates. Install it before you leave; it&rsquo;s also how you reach us.</li>
+            </ul>
+          </div>
+          <div class="igroup">
+            <h3>Power, weather, packing</h3>
+            <ul class="dlist dlist--tight">
+              <li>India uses Type C/D/M plugs, 230V. Pack a universal adapter; your phone charger handles the voltage.</li>
+              <li>January in Coorg: gorgeous. Days 75-80&deg;F, evenings 50-55&deg;F in the hills, so bring a real layer for nights.</li>
+              <li>Comfortable shoes (the resort is 37 acres), sunscreen, insect repellent, any prescription meds in original packaging.</li>
+            </ul>
+          </div>
+          <div class="igroup">
+            <h3>Good to know</h3>
+            <ul class="dlist dlist--tight">
+              <li>Tap water: don&rsquo;t. Bottled/filtered water is everywhere, including the resort.</li>
+              <li>Shoes come off at temples and homes; shoulders/knees covered at religious sites.</li>
+              <li>Head-wobble means yes. Usually.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ============ TRAVEL TEASER (full guide lives on travel.html) ============ -->
-    <section class="section section--tint-lichen" id="travel-teaser">
-      <div class="measure center">
-        <p class="caps">For the long-haul travelers</p>
-        <h2>Make a trip of it</h2>
-        <p class="section__lede">Coming from far? We mapped four ways to break up the journey: a few days in
-           Dubai, Bangkok, Tokyo, or Delhi, each landing at Mangaluru (IXE).</p>
-        <p><a class="btn btn--cherry" href="travel.html">Open the travel guide &rarr;</a></p>
+    <!-- ============ TRAVEL TEASER ============ -->
+    <section class="teaser" id="travel-teaser">
+      <p class="kicker">For the long-haul travelers</p>
+      <h2>Make a trip of it</h2>
+      <p class="lede">Coming from far? We mapped four ways to break up the journey: a few days in
+         Dubai, Bangkok, Tokyo, or Delhi, each landing at Mangaluru (IXE).</p>
+      <div class="teaser-photos">
+        <a href="travel.html">
+          <picture>
+            <source srcset="images/route-dubai.avif" type="image/avif">
+            <source srcset="images/route-dubai.webp" type="image/webp">
+            <img src="images/route-dubai.jpg" alt="Dubai skyline at dusk" loading="lazy">
+          </picture>
+          <span>Dubai</span>
+        </a>
+        <a href="travel.html">
+          <picture>
+            <source srcset="images/route-bangkok.avif" type="image/avif">
+            <source srcset="images/route-bangkok.webp" type="image/webp">
+            <img src="images/route-bangkok.jpg" alt="Wat Arun temple, Bangkok" loading="lazy">
+          </picture>
+          <span>Bangkok</span>
+        </a>
+        <a href="travel.html">
+          <picture>
+            <source srcset="images/route-tokyo.avif" type="image/avif">
+            <source srcset="images/route-tokyo.webp" type="image/webp">
+            <img src="images/route-tokyo.jpg" alt="Lanterns in a Tokyo alley at night" loading="lazy">
+          </picture>
+          <span>Tokyo</span>
+        </a>
+        <a href="travel.html">
+          <picture>
+            <source srcset="images/route-delhi.avif" type="image/avif">
+            <source srcset="images/route-delhi.webp" type="image/webp">
+            <img src="images/route-delhi.jpg" alt="Humayun&rsquo;s Tomb, Delhi" loading="lazy">
+          </picture>
+          <span>Delhi</span>
+        </a>
       </div>
+      <a class="btn" href="travel.html">Open the travel guide &rarr;</a>
     </section>
 
     <!-- ============ RSVP ============ -->
-    <section class="section section--tint-marigold section--rsvp" id="rsvp">
+    <section class="section section--rsvp" id="rsvp">
       <div class="section-head">
-        <p class="caps">The important part</p>
+        <p class="kicker">The important part</p>
         <h2>Tell us you&rsquo;re coming</h2>
         <div class="ornament" aria-hidden="true"><span class="ornament__mark"></span></div>
+        <p class="rsvp__deadline">Please RSVP by <strong>September 1</strong> if you can.
+           <strong>October 1, 11:59pm Pacific</strong> is the hard cutoff for the caterer and the pickup plan.</p>
       </div>
 
       <!-- #rsvp-live is everything BEFORE success; app.js hides it so the confirmation takes over -->
-      <div class="measure" id="rsvp-live">
-        <p class="rsvp__deadline center">Please RSVP by <strong>September 1</strong> if you can.
-           <strong>October 1, 11:59pm Pacific</strong> is the hard cutoff for the caterer and the pickup plan.</p>
-
-        <div class="card card--form">
+      <div id="rsvp-live">
+        <div class="card--form">
           <form id="rsvp-form" class="form-grid" novalidate>
             <!-- Honeypot: humans never see it; bots fill it; server fakes success and stores nothing -->
             <div class="hp" aria-hidden="true">
@@ -272,91 +328,91 @@
 
             <!-- Everything below shows only when attending=yes (app.js toggles [hidden] + disabled) -->
             <div id="yes-fields" hidden>
-              <div class="field">
-                <label for="f-party-size">How many in your party (including you)?</label>
-                <input type="number" id="f-party-size" name="party_size" min="1" max="10" value="1" required disabled>
-              </div>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="f-party-size">How many in your party (including you)?</label>
+                  <input type="number" id="f-party-size" name="party_size" min="1" max="10" value="1" required disabled>
+                </div>
 
-              <!-- app.js renders one block per person: name + dietary (dropdown + fill) + allergies (dropdown + fill).
-                   Those inputs have NO name attribute; app.js composes them into the three hidden fields below. -->
-              <div id="party-people"></div>
-              <input type="hidden" name="party_names" id="f-party-names" disabled>
-              <input type="hidden" name="dietary_restrictions" id="f-dietary" disabled>
-              <input type="hidden" name="allergies" id="f-allergies" disabled>
+                <!-- app.js renders one block per person: name + dietary (dropdown + fill) + allergies (checkboxes + fill).
+                     Those inputs have NO name attribute; app.js composes them into the three hidden fields below. -->
+                <div id="party-people" class="form-grid"></div>
+                <input type="hidden" name="party_names" id="f-party-names" disabled>
+                <input type="hidden" name="dietary_restrictions" id="f-dietary" disabled>
+                <input type="hidden" name="allergies" id="f-allergies" disabled>
 
-              <div class="field">
-                <label for="f-airport">Flying into Mangaluru (IXE)? <span class="field__hint">(That&rsquo;s the plan for everyone.)</span></label>
-                <select id="f-airport" name="arrival_airport" required disabled>
-                  <option value="IXE" selected>Yes, Mangaluru (IXE)</option>
-                  <option value="OTHER">I need to land somewhere else (will WhatsApp you)</option>
-                  <option value="NOT_SURE">Not sure yet (will update you)</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="f-arrival">Arrival date <span class="field__hint">(optional; send it later if you haven&rsquo;t booked)</span></label>
-                <input type="date" id="f-arrival" name="arrival_date" disabled min="2026-12-15" max="2027-01-06">
-              </div>
-              <div class="field">
-                <label for="f-flight">Flight number <span class="field__hint">(optional)</span></label>
-                <input type="text" id="f-flight" name="flight_number" maxlength="20" disabled placeholder="e.g. IX 384">
-              </div>
-              <div class="field">
-                <label for="f-departure">Departure date <span class="field__hint">(optional)</span></label>
-                <input type="date" id="f-departure" name="departure_date" disabled min="2027-01-06" max="2027-02-15">
+                <div class="field">
+                  <label for="f-airport">Flying into Mangaluru (IXE)? <span class="field__hint">(That&rsquo;s the plan for everyone.)</span></label>
+                  <select id="f-airport" name="arrival_airport" required disabled>
+                    <option value="IXE" selected>Yes, Mangaluru (IXE)</option>
+                    <option value="OTHER">I need to land somewhere else (will WhatsApp you)</option>
+                    <option value="NOT_SURE">Not sure yet (will update you)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="f-arrival">Arrival date <span class="field__hint">(optional; send it later if you haven&rsquo;t booked)</span></label>
+                  <input type="date" id="f-arrival" name="arrival_date" disabled min="2026-12-15" max="2027-01-06">
+                </div>
+                <div class="field">
+                  <label for="f-flight">Flight number <span class="field__hint">(optional)</span></label>
+                  <input type="text" id="f-flight" name="flight_number" maxlength="20" disabled placeholder="e.g. IX 384">
+                </div>
+                <div class="field">
+                  <label for="f-departure">Departure date <span class="field__hint">(optional)</span></label>
+                  <input type="date" id="f-departure" name="departure_date" disabled min="2027-01-06" max="2027-02-15">
+                </div>
               </div>
             </div>
 
             <p id="form-error" class="rsvp-state rsvp-error" role="alert"></p>
-            <button type="submit" class="btn btn--cherry btn--block" id="submit-btn">Send our RSVP</button>
+            <button type="submit" class="btn btn--block" id="submit-btn">Send our RSVP</button>
           </form>
         </div>
 
-        <!-- Error state (warm, Lichen bg, Cherry retry) -->
-        <div id="rsvp-error" class="rsvp-state rsvp-error" role="alert">
+        <!-- Error state -->
+        <div id="rsvp-error" class="rsvp-state rsvp-error card--form" role="alert">
           <p><strong>That didn&rsquo;t go through.</strong> The mountain internet gremlins, probably. Nothing was lost.</p>
           <p id="rsvp-error-detail"></p>
-          <button type="button" class="btn btn--cherry" id="retry-btn">Try again</button>
+          <button type="button" class="btn" id="retry-btn">Try again</button>
           <p>Still stuck? <a href="https://wa.me/919912180920">WhatsApp us your RSVP</a> and we&rsquo;ll record it by hand.</p>
         </div>
 
-        <!-- After-deadline state (Bodoni italic + contact fallback; server keeps accepting) -->
-        <div id="rsvp-closed" class="rsvp-state">
+        <!-- After-deadline state (server keeps accepting) -->
+        <div id="rsvp-closed" class="rsvp-state" style="text-align:center;">
           <p class="rsvp-closed">The RSVP window has closed, but we still want to hear from you.</p>
           <p>Message us on <a href="https://wa.me/919912180920">WhatsApp</a> or
              <a href="mailto:awgrube@gmail.com">email</a> and we&rsquo;ll see what we can do.</p>
         </div>
       </div>
 
-      <!-- Success takes over the whole section (app.js hides #rsvp-live and shows this, centered & large) -->
+      <!-- Success takes over the section (app.js hides #rsvp-live and the section head) -->
       <div id="rsvp-success" class="rsvp-success" role="status">
         <div class="rsvp-success__inner">
-          <p class="caps">RSVP received</p>
+          <p class="kicker">RSVP received</p>
           <h2 class="rsvp-success__headline">We can&rsquo;t wait<br>to see you.</h2>
           <p class="rsvp-success__sub">Your RSVP is in. Watch WhatsApp as the date gets close.</p>
-          <p><a class="btn btn--cherry" href="wedding.ics" download>Add the wedding to your calendar</a></p>
+          <p><a class="btn" href="wedding.ics" download>Add the wedding to your calendar</a></p>
         </div>
       </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
-    <section class="section section--contact" id="contact">
-      <div class="measure center" id="contact-content">
-        <div class="ornament" aria-hidden="true"><span class="ornament__mark"></span></div>
-        <h2>Questions? Just ask.</h2>
-        <p class="italic-note">No question is too small. &ldquo;What do I pack&rdquo; and
-           &ldquo;is the water safe&rdquo; are exactly what we&rsquo;re here for.</p>
-        <p>
-          <a class="btn btn--cherry" href="https://wa.me/919912180920?text=Hi!%20Question%20about%20the%20wedding%3A%20"
-             rel="noopener">WhatsApp us</a>
-          &nbsp;
-          <a class="btn btn--ghost" href="mailto:awgrube@gmail.com?subject=Coorg%20wedding%20question">Email instead</a>
-        </p>
+    <section class="section--contact" id="contact">
+      <div class="ornament" aria-hidden="true"><span class="ornament__mark"></span></div>
+      <h2>Questions? Just ask.</h2>
+      <p class="contact-note">No question is too small. &ldquo;What do I pack&rdquo; and
+         &ldquo;is the water safe&rdquo; are exactly what we&rsquo;re here for.</p>
+      <div class="btn-row">
+        <a class="btn" href="https://wa.me/919912180920?text=Hi!%20Question%20about%20the%20wedding%3A%20"
+           rel="noopener">WhatsApp us</a>
+        <a class="btn btn--outline-ink" href="mailto:awgrube@gmail.com?subject=Coorg%20wedding%20question">Email instead</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p class="footer__mark">A &amp; M &middot; Coorg, India &middot; January 5-6, 2027</p>
+    <img src="images/logo.png" alt="A&amp;M, Alex &amp; Megana">
+    <p class="footer__line">Coorg, India &middot; January 5-6, 2027</p>
     <p class="footer__updated">Last updated: <span id="last-updated">July 2026</span></p>
   </footer>
 
@@ -365,7 +421,7 @@
     <div class="modal__backdrop" data-close></div>
     <div class="modal__panel">
       <button type="button" class="modal__close" data-close aria-label="Close">&times;</button>
-      <p class="modal__eyebrow caps" id="modal-eyebrow"></p>
+      <p class="modal__eyebrow" id="modal-eyebrow"></p>
       <h3 class="modal__title" id="modal-title"></h3>
       <div class="modal__body" id="modal-body"></div>
     </div>
@@ -402,6 +458,6 @@
        Details to follow.</p>
   </template>
 
-  <script src="app.js?v=3" defer></script>
+  <script src="app.js?v=4" defer></script>
 </body>
 </html>

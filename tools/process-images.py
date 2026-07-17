@@ -63,6 +63,35 @@ def process(src_name, base, width):
     return all(size <= BUDGET for _, size, _ in results)
 
 
+def derived_bands():
+    """Hotel band (dark wash) + RSVP mist (blossom wash) derived from the hero photo,
+    per the redesign handoff (README blesses building these from hero.jpg)."""
+    from PIL import ImageFilter, ImageEnhance
+    hero = Image.open(os.path.join(SRC, 'hero-src.jpg')).convert('RGB')
+    if hero.width > 1600:
+        hero = hero.resize((1600, round(hero.height * 1600 / hero.width)), Image.LANCZOS)
+
+    # band-dark: lower crop + rgba(24,30,22,.72) + rgba(107,29,40,.14) overlays
+    crop_h = round(hero.height * 0.62)
+    band = hero.crop((0, hero.height - crop_h, hero.width, hero.height))
+    band = Image.blend(band, Image.new('RGB', band.size, (24, 30, 22)), 0.72)
+    band = Image.blend(band, Image.new('RGB', band.size, (107, 29, 40)), 0.14)
+    for fmt, q in (('jpg', 78), ('webp', 76), ('avif', 60)):
+        p = os.path.join(OUT, 'band-dark.' + fmt)
+        band.save(p, {'jpg': 'JPEG', 'webp': 'WEBP', 'avif': 'AVIF'}[fmt], quality=q)
+        print(f'  band-dark.{fmt:<5} {os.path.getsize(p)//1024:>4}KB')
+
+    # mist-light: blur 2px, saturate .85, washed with rgba(245,239,226,.9)
+    mist = hero.filter(ImageFilter.GaussianBlur(2))
+    mist = ImageEnhance.Color(mist).enhance(0.85)
+    mist = Image.blend(mist, Image.new('RGB', mist.size, (245, 239, 226)), 0.9)
+    for fmt, q in (('jpg', 80), ('webp', 78), ('avif', 62)):
+        p = os.path.join(OUT, 'mist-light.' + fmt)
+        mist.save(p, {'jpg': 'JPEG', 'webp': 'WEBP', 'avif': 'AVIF'}[fmt], quality=q)
+        print(f'  mist-light.{fmt:<5} {os.path.getsize(p)//1024:>4}KB')
+    return True
+
+
 def og_card():
     """1200x630 share card: hero photo full-bleed + centered Blossom panel."""
     BLOSSOM, CHERRY, PEPPERCORN, LATERITE = (245, 239, 226), (107, 29, 40), (35, 41, 31), (182, 92, 56)
@@ -85,7 +114,11 @@ def og_card():
     px, py = (1200 - pw) // 2, (630 - ph) // 2
     d.rounded_rectangle([px, py, px + pw, py + ph], radius=10, fill=BLOSSOM,
                         outline=(169, 135, 63), width=2)
-    bodoni = ImageFont.truetype(os.path.join(ROOT, 'src-assets/fonts/Bodoni_Moda/static/BodoniModa_28pt-Regular.ttf'), 84)
+    display = ImageFont.truetype(os.path.join(ROOT, 'src-assets/fonts/Playfair/PlayfairDisplay-Italic[wght].ttf'), 84)
+    try:
+        display.set_variation_by_axes([500])
+    except Exception:
+        pass
     jost = ImageFont.truetype(os.path.join(ROOT, 'src-assets/fonts/Jost/static/Jost-Medium.ttf'), 30)
 
     def center(y, text, font, fill, tracking=0):
@@ -101,8 +134,8 @@ def og_card():
             d.text((600 - (b[2] - b[0]) / 2 - b[0], y), text, font=font, fill=fill)
 
     center(py + 48, 'ALEX & MEGANA', jost, LATERITE, tracking=7)
-    center(py + 110, 'Two days in the', bodoni, CHERRY)
-    center(py + 196, 'Western Ghats', bodoni, CHERRY)
+    center(py + 110, 'Two days in the', display, CHERRY)
+    center(py + 196, 'Western Ghats', display, CHERRY)
     center(py + 296, 'JANUARY 5-6, 2027  ·  COORG, INDIA', jost, PEPPERCORN, tracking=4)
     path = os.path.join(OUT, 'og-preview.jpg')
     q = 82
@@ -121,6 +154,8 @@ def main():
     for src, base, width in JOBS:
         print(base + ':')
         ok = process(src, base, width) and ok
+    print('bands:')
+    ok = derived_bands() and ok
     print('og:')
     ok = og_card() and ok
     if not ok:

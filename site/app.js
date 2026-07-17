@@ -5,15 +5,15 @@
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzbGhyVR3FiaieY2UerRWDaaKYw1XUYkf2OHt2VOL0OVXFnO0XDLP0ILLbrgkDyjsax/exec';
   var DEADLINE_UTC = Date.UTC(2026, 9, 2, 6, 59, 59); // Oct 1, 2026 23:59:59 Pacific (PDT = UTC-7)
 
-  // ==== Sticky nav: appear once the hero scrolls away ====
+  // ==== Fixed nav: transparent over the hero, solid (with logo crossfade) after 60px.
+  //      travel.html's nav carries .nav--solid and skips this entirely. ====
   var nav = document.getElementById('nav');
-  var hero = document.querySelector('.hero');
-  if (nav && hero && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      nav.classList.toggle('nav--visible', !entries[0].isIntersecting);
-    }, { rootMargin: '-60px 0px 0px 0px' }).observe(hero);
-  } else if (nav && !nav.classList.contains('nav--static')) {
-    nav.classList.add('nav--visible');
+  if (nav && !nav.classList.contains('nav--solid')) {
+    var onNavScroll = function () {
+      nav.classList.toggle('nav--scrolled', window.scrollY > 60);
+    };
+    window.addEventListener('scroll', onNavScroll, { passive: true });
+    onNavScroll();
   }
 
   // ==== Schedule ceremony modal ====

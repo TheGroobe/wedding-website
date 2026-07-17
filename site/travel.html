@@ -6,14 +6,18 @@
   <title>Travel Guide &middot; Alex &amp; Megana &middot; Coorg, India</title>
   <meta name="description" content="Four ways to turn the trip to Coorg into an adventure: Dubai, Bangkok, Tokyo, or Delhi, all landing at Mangaluru (IXE).">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="fonts/bodoni-moda-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair-display-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair-display.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/jost-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
-  <nav class="nav nav--static" aria-label="Site">
-    <a class="nav__mark" href="index.html">A&amp;M</a>
+  <nav class="nav nav--solid" aria-label="Site">
+    <a class="nav__logo" href="index.html">
+      <img class="logo-ink" src="images/logo.png" alt="A&amp;M, Alex &amp; Megana">
+      <img class="logo-blossom" src="images/logo-blossom.png" alt="" aria-hidden="true">
+    </a>
     <div class="nav__links">
       <a href="index.html#schedule">Schedule</a>
       <a href="index.html#hotel">Hotel</a>
@@ -23,154 +27,152 @@
   </nav>
 
   <header class="page-head">
-    <div class="measure">
-      <p class="caps page-head__kicker">Alex &amp; Megana &middot; The Travel Guide</p>
-      <h1>The journey is the adventure</h1>
-      <p class="section__lede">The wedding is a Tuesday and a Wednesday in the mountains of India.
-         Here&rsquo;s how to turn getting there into the trip of a lifetime: four ways to break up
-         the flight, each with 2-3 days somewhere extraordinary. Every route ends the same way:
-         a short hop into <strong>Mangaluru (IXE)</strong>.</p>
-      <p><a class="btn btn--ghost" href="index.html">&larr; Back to the wedding site</a></p>
-    </div>
+    <p class="kicker">Alex &amp; Megana &middot; The Travel Guide</p>
+    <h1>The journey is<br>the adventure</h1>
     <div class="ornament" aria-hidden="true"><span class="ornament__mark"></span></div>
+    <p class="lede">The wedding is a Tuesday and a Wednesday in the mountains of India.
+       Here&rsquo;s how to turn getting there into the trip of a lifetime: four ways to break up
+       the flight, each with 2-3 days somewhere extraordinary. Every route ends the same way:
+       a short hop into <strong>Mangaluru (IXE)</strong>.</p>
+    <a class="back" href="index.html">&larr; Back to the wedding site</a>
   </header>
 
   <main>
-    <article class="strip strip--laterite" id="route-dubai">
-      <div class="strip__inner">
+    <section class="route" id="route-dubai">
+      <div class="route__grid">
         <div>
-          <p class="strip__label">Route 01 &middot; Westbound &middot; Premium</p>
+          <p class="kicker">Route 01 &middot; Westbound &middot; Premium</p>
           <h2>The Dubai Route</h2>
-          <p class="strip__path">US West Coast &rarr; Dubai (2-3 days) &rarr; nonstop to Mangaluru (IXE)</p>
-          <p>Fly the westbound way and break the trip in the most theatrical layover city on Earth.
+          <p class="route__path">US West Coast &rarr; Dubai (2-3 days) &rarr; nonstop to Mangaluru (IXE)</p>
+          <p class="route__para">Fly the westbound way and break the trip in the most theatrical layover city on Earth.
              Desert safari one day, Burj Khalifa and the souks the next. Then a short hop lands you
              practically at the wedding. Pricier on the ground, but iconic.</p>
-          <ul class="strip__facts-list">
+          <ul class="route__facts">
             <li><strong>Leg 1:</strong> West Coast &rarr; Dubai, ~$1,050-1,450 round trip with 1 stop for the wedding window (checked July 2026). Emirates&rsquo; ~16 hr nonstop runs about $2,100 on these dates</li>
             <li><strong>Stopover:</strong> 2-3 days: desert safari, Burj Khalifa, beaches, the malls</li>
             <li><strong>Leg 2:</strong> Air India Express nonstop Dubai &rarr; IXE, ~4 hr, daily. The only route on this page with a direct international flight to IXE</li>
             <li><strong>Timezone trick:</strong> Dubai is UTC+4, India UTC+5:30. You do the hard adjustment on the long leg, then barely feel the hop</li>
-            <li><a href="https://www.google.com/travel/flights?q=flights%20from%20LAX%20to%20DXB%20on%202026-12-28%20through%202027-01-09" target="_blank" rel="noopener">Check live fares for these dates &rarr;</a></li>
           </ul>
+          <a class="route__fares" href="https://www.google.com/travel/flights?q=flights%20from%20LAX%20to%20DXB%20on%202026-12-28%20through%202027-01-09" target="_blank" rel="noopener">Check live fares for these dates &rarr;</a>
         </div>
         <div>
           <picture>
             <source srcset="images/route-dubai.avif" type="image/avif">
             <source srcset="images/route-dubai.webp" type="image/webp">
-            <img class="strip__img" src="images/route-dubai.jpg" alt="Dubai skyline at dusk" loading="lazy">
+            <img class="route__img" src="images/route-dubai.jpg" alt="Dubai skyline at dusk" loading="lazy">
           </picture>
-          <p class="strip__facts">Book legs 1+2 as one ticket where you can. If they&rsquo;re separate tickets, leave a full buffer <em>day</em> in Dubai and carry travel insurance.</p>
+          <p class="route__note">Book legs 1+2 as one ticket where you can. If they&rsquo;re separate tickets, leave a full buffer day in Dubai and carry travel insurance.</p>
         </div>
       </div>
-    </article>
+    </section>
 
-    <article class="strip strip--marigold" id="route-bangkok">
-      <div class="strip__inner">
+    <section class="route route--alt" id="route-bangkok">
+      <div class="route__grid">
         <div>
-          <p class="strip__label">Route 02 &middot; Eastbound &middot; Best Value</p>
+          <p class="kicker">Route 02 &middot; Eastbound &middot; Best Value</p>
           <h2>The Bangkok Route</h2>
-          <p class="strip__path">US West Coast &rarr; Bangkok (2-3 days) &rarr; Bangalore (BLR) &rarr; 1-hr hop to Mangaluru (IXE)</p>
-          <p>Temples, street food, rooftop nightlife. Your dollar goes further than anywhere else
+          <p class="route__path">US West Coast &rarr; Bangkok (2-3 days) &rarr; Bangalore (BLR) &rarr; 1-hr hop to Mangaluru (IXE)</p>
+          <p class="route__para">Temples, street food, rooftop nightlife. Your dollar goes further than anywhere else
              on this page. $30/night hotels, $3 meals that ruin home cooking for you. The best value route by a mile.</p>
-          <ul class="strip__facts-list">
+          <ul class="route__facts">
             <li><strong>Leg 1:</strong> West Coast &rarr; Bangkok, 1 stop (via Seoul/Hong Kong/Taipei), ~20-24 hr &middot; ~$1,100-1,600 round trip for the wedding window (checked July 2026)</li>
             <li><strong>Stopover:</strong> 2-3 days: Grand Palace, Chatuchak market, khao soi you&rsquo;ll dream about</li>
             <li><strong>Leg 2:</strong> Bangkok &rarr; Bangalore (BLR), ~4 hr nonstop (Thai Airways, IndiGo, Air India; ~18 flights a week)</li>
             <li><strong>Leg 3:</strong> BLR &rarr; Mangaluru (IXE), 1 hr nonstop, ~$50 even in the wedding week, six-plus daily</li>
-            <li><a href="https://www.google.com/travel/flights?q=flights%20from%20LAX%20to%20BKK%20on%202026-12-28%20through%202027-01-09" target="_blank" rel="noopener">Check live fares for these dates &rarr;</a></li>
           </ul>
-          <p class="strip__aside">Yes, this one has an extra leg (the Bangalore connection). Bangkok is worth it.</p>
+          <a class="route__fares" href="https://www.google.com/travel/flights?q=flights%20from%20LAX%20to%20BKK%20on%202026-12-28%20through%202027-01-09" target="_blank" rel="noopener">Check live fares for these dates &rarr;</a>
+          <p class="route__aside">Yes, this one has an extra leg (the Bangalore connection). Bangkok is worth it.</p>
         </div>
         <div>
           <picture>
             <source srcset="images/route-bangkok.avif" type="image/avif">
             <source srcset="images/route-bangkok.webp" type="image/webp">
-            <img class="strip__img" src="images/route-bangkok.jpg" alt="Wat Arun temple, Bangkok" loading="lazy">
+            <img class="route__img" src="images/route-bangkok.jpg" alt="Wat Arun temple, Bangkok" loading="lazy">
           </picture>
-          <p class="strip__facts">Book the long-haul and the India legs as one ticket where you can. Separate tickets? Leave a full buffer <em>day</em> in Bangkok and carry travel insurance.</p>
+          <p class="route__note">Book the long-haul and the India legs as one ticket where you can. Separate tickets? Leave a full buffer day in Bangkok and carry travel insurance.</p>
         </div>
       </div>
-    </article>
+    </section>
 
-    <article class="strip strip--cherry" id="route-tokyo">
-      <div class="strip__inner">
+    <section class="route" id="route-tokyo">
+      <div class="route__grid">
         <div>
-          <p class="strip__label">Route 03 &middot; Eastbound &middot; Whoa</p>
+          <p class="kicker">Route 03 &middot; Eastbound &middot; Whoa</p>
           <h2>The Tokyo Route</h2>
-          <p class="strip__path">US West Coast &rarr; Tokyo (2-3 days) &rarr; JAL nonstop to Bangalore (BLR) &rarr; 1-hr hop to Mangaluru (IXE)</p>
-          <p>The shortest first leg on this page and the biggest &ldquo;whoa&rdquo; per day. January Tokyo is
+          <p class="route__path">US West Coast &rarr; Tokyo (2-3 days) &rarr; JAL nonstop to Bangalore (BLR) &rarr; 1-hr hop to Mangaluru (IXE)</p>
+          <p class="route__para">The shortest first leg on this page and the biggest &ldquo;whoa&rdquo; per day. January Tokyo is
              cold and clear, with thin crowds. Once in a lifetime, and you&rsquo;re already on this side of the world.</p>
-          <ul class="strip__facts-list">
+          <ul class="route__facts">
             <li><strong>Leg 1:</strong> West Coast &rarr; Tokyo, nonstop from LAX ~12 hr &middot; ~$1,000-1,600 round trip for the wedding window (checked July 2026: ZIPAIR ~$1,010, ANA ~$1,300, JAL ~$1,570). Still the shortest first leg of any route, with the cheapest nonstops</li>
             <li><strong>Stopover:</strong> 2-3 days: food, temples, Shibuya at night, absurdly good convenience stores</li>
             <li><strong>Leg 2:</strong> JAL nonstop Tokyo (NRT) &rarr; Bangalore (BLR), ~7.5 hr, <strong>daily</strong> (goes daily from Aug 2026)</li>
             <li><strong>Leg 3:</strong> BLR &rarr; Mangaluru (IXE), 1-hr hop</li>
-            <li><a href="https://www.google.com/travel/flights?q=flights%20from%20LAX%20to%20NRT%20on%202026-12-28%20through%202027-01-09" target="_blank" rel="noopener">Check live fares for these dates &rarr;</a></li>
           </ul>
+          <a class="route__fares" href="https://www.google.com/travel/flights?q=flights%20from%20LAX%20to%20NRT%20on%202026-12-28%20through%202027-01-09" target="_blank" rel="noopener">Check live fares for these dates &rarr;</a>
         </div>
         <div>
           <picture>
             <source srcset="images/route-tokyo.avif" type="image/avif">
             <source srcset="images/route-tokyo.webp" type="image/webp">
-            <img class="strip__img" src="images/route-tokyo.jpg" alt="Lanterns in a Tokyo alley at night" loading="lazy">
+            <img class="route__img" src="images/route-tokyo.jpg" alt="Lanterns in a Tokyo alley at night" loading="lazy">
           </picture>
-          <p class="strip__facts">The JAL Bangalore nonstop runs daily, so your dates are flexible. One ticket beats two; a separate booking wants a buffer <em>day</em> in Tokyo and travel insurance.</p>
+          <p class="route__note">The JAL Bangalore nonstop runs daily, so your dates are flexible. One ticket beats two; a separate booking wants a buffer day in Tokyo and travel insurance.</p>
         </div>
       </div>
-    </article>
+    </section>
 
-    <article class="strip strip--lichen" id="route-delhi">
-      <div class="strip__inner">
+    <section class="route route--alt" id="route-delhi">
+      <div class="route__grid">
         <div>
-          <p class="strip__label">Route 04 &middot; Already in India</p>
+          <p class="kicker">Route 04 &middot; Already in India</p>
           <h2>The Delhi Route</h2>
-          <p class="strip__path">US West Coast &rarr; Delhi (2-3 days) &rarr; domestic nonstop to Mangaluru (IXE)</p>
-          <p>Land in India first, adjust once, and spend your stopover already in the country: a
+          <p class="route__path">US West Coast &rarr; Delhi (2-3 days) &rarr; domestic nonstop to Mangaluru (IXE)</p>
+          <p class="route__para">Land in India first, adjust once, and spend your stopover already in the country: a
              Taj Mahal day trip (Agra, ~3 hr by train), the Red Fort, and Old Delhi street food.</p>
-          <ul class="strip__facts-list">
+          <ul class="route__facts">
             <li><strong>Leg 1:</strong> West Coast &rarr; Delhi, ~20-24 hr with 1 stop &middot; ~$1,350-1,700 round trip for the wedding window (checked July 2026; December and January are peak season on this route)</li>
             <li><strong>Stopover:</strong> 2-3 days, already timezone-adjusted for the wedding</li>
             <li><strong>Leg 2:</strong> Delhi &rarr; Mangaluru (IXE), nonstop ~3 hr, daily (IndiGo, Air India, Air India Express)</li>
-            <li><a href="https://www.google.com/travel/flights?q=flights%20from%20LAX%20to%20DEL%20on%202026-12-28%20through%202027-01-09" target="_blank" rel="noopener">Check live fares for these dates &rarr;</a></li>
           </ul>
+          <a class="route__fares" href="https://www.google.com/travel/flights?q=flights%20from%20LAX%20to%20DEL%20on%202026-12-28%20through%202027-01-09" target="_blank" rel="noopener">Check live fares for these dates &rarr;</a>
         </div>
         <div>
           <picture>
             <source srcset="images/route-delhi.avif" type="image/avif">
             <source srcset="images/route-delhi.webp" type="image/webp">
-            <img class="strip__img" src="images/route-delhi.jpg" alt="Humayun&rsquo;s Tomb, Delhi" loading="lazy">
+            <img class="route__img" src="images/route-delhi.jpg" alt="Humayun&rsquo;s Tomb, Delhi" loading="lazy">
           </picture>
-          <p class="strip__facts">Booking both legs on one ticket is simplest. Separate tickets? Leave a buffer <em>day</em> in Delhi. You&rsquo;re already in India after leg 1, so the last hop is low-stress.</p>
+          <p class="route__note">Booking both legs on one ticket is simplest. Separate tickets? Leave a buffer day in Delhi. You&rsquo;re already in India after leg 1, so the last hop is low-stress.</p>
         </div>
       </div>
-    </article>
+    </section>
 
-    <aside class="strip strip--sidebar" id="route-singapore">
-      <div class="strip__inner">
-        <div>
-          <p class="strip__label">Sidebar &middot; For nervous first-timers</p>
-          <h2>The Singapore Option</h2>
-          <p class="strip__path">US West Coast &rarr; Singapore (2-3 days) &rarr; nonstop to Bangalore (BLR) &rarr; 1-hr hop to Mangaluru (IXE)</p>
-          <p>Never left the country and feeling it? Singapore is <em>training wheels for international travel</em>:
-             everything in English, spotless, hyper-organized, and impossible to get lost in. Singapore Airlines
-             flies LAX &rarr; Singapore nonstop (~17.5 hr) and Singapore &rarr; Bangalore nonstop (~4 hr 40 min).
-             Expect ~$1,375-1,900 round trip from the West Coast for the wedding window, or ~$1,950 for the
-             Singapore Airlines nonstop (checked July 2026;
-             <a href="https://www.google.com/travel/flights?q=flights%20from%20LAX%20to%20SIN%20on%202026-12-28%20through%202027-01-09" target="_blank" rel="noopener">check live fares for these dates &rarr;</a>).
-             Same rule applies: one ticket where possible.</p>
-        </div>
+    <section class="band band--singapore" id="route-singapore">
+      <div class="inner">
+        <p class="kicker kicker--gold">Sidebar &middot; For nervous first-timers</p>
+        <h2>The Singapore Option</h2>
+        <p class="path">US West Coast &rarr; Singapore (2-3 days) &rarr; nonstop to Bangalore (BLR) &rarr; 1-hr hop to Mangaluru (IXE)</p>
+        <p class="body">Never left the country and feeling it? Singapore is <em>training wheels for international travel</em>:
+           everything in English, spotless, hyper-organized, and impossible to get lost in. Singapore Airlines
+           flies LAX &rarr; Singapore nonstop (~17.5 hr) and Singapore &rarr; Bangalore nonstop (~4 hr 40 min).
+           Expect ~$1,375-1,900 round trip from the West Coast for the wedding window, or ~$1,950 for the
+           Singapore Airlines nonstop (checked July 2026;
+           <a href="https://www.google.com/travel/flights?q=flights%20from%20LAX%20to%20SIN%20on%202026-12-28%20through%202027-01-09" target="_blank" rel="noopener">check live fares for these dates &rarr;</a>).
+           Same rule applies: one ticket where possible.</p>
       </div>
-    </aside>
+    </section>
 
-    <section class="section section--tint-lichen">
-      <div class="measure" id="travel-notes">
-        <p style="margin-top:2rem;"><a class="btn btn--cherry" href="index.html#rsvp">Ready? RSVP now &rarr;</a> &nbsp; <a class="btn btn--ghost" href="index.html">Back to the wedding site</a></p>
+    <section class="cta-row">
+      <div class="btn-row">
+        <a class="btn" href="index.html#rsvp">Ready? RSVP now &rarr;</a>
+        <a class="btn btn--outline-ink" href="index.html">Back to the wedding site</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p class="footer__mark">A &amp; M &middot; Coorg, India &middot; January 5-6, 2027</p>
+    <img src="images/logo.png" alt="A&amp;M, Alex &amp; Megana">
+    <p class="footer__line">Coorg, India &middot; January 5-6, 2027</p>
     <p class="footer__updated">Last updated: <span>July 2026</span></p>
   </footer>
 
