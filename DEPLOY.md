@@ -21,15 +21,17 @@ git remote add origin https://github.com/TheGroobe/wedding-website.git
 git push -u origin main
 ```
 
-Keep the repo name **`wedding-website`** — the OG tags and calendar links are baked to
-`https://thegroobe.github.io/wedding-website/`. (Renaming the repo means updating those URLs.)
+The OG tags and calendar links are baked to the custom domain
+`https://alexmarriesmegana.com/` (set 2026-07-22; before that they pointed at the
+github.io URL).
 
 ## 2. Turn on Pages
 
 Repo → **Settings → Pages → Build and deployment → Source = "GitHub Actions"**.
 The next push (or Actions → "Deploy to GitHub Pages" → Run workflow) publishes the site.
 
-Live URL: **https://thegroobe.github.io/wedding-website/**
+Live URL: **https://alexmarriesmegana.com/** (the old
+`thegroobe.github.io/wedding-website` URL 301-redirects there)
 
 > **Private-repo caveat:** GitHub Pages from a *private* repo needs a paid plan
 > (GitHub Pro). On the free plan, either make the repo **public** (there are no secrets
@@ -37,16 +39,19 @@ Live URL: **https://thegroobe.github.io/wedding-website/**
 > and Megana's contact details in the page source) or upgrade to Pro. If Pages won't
 > publish, this is almost always why.
 
-## 3. (Later) Custom domain via Cloudflare
+## 3. Custom domain (done 2026-07-22, via Namecheap)
 
-You own a domain on Cloudflare. To use it instead of the github.io URL:
-1. Repo → Settings → Pages → Custom domain → enter the domain → Save (this commits a `CNAME` file).
-2. In Cloudflare DNS: add a `CNAME` for `www` → `thegroobe.github.io`, and for the apex
-   use Cloudflare's flattened `A`/`AAAA` records pointing at GitHub Pages' IPs
-   (185.199.108–111.153 / the IPv6 set). Set the records to **DNS-only** (grey cloud) first
-   to let GitHub issue the TLS cert, then you can proxy if desired.
-3. Update the two absolute URLs to the custom domain: `og:url` + `og:image` in
-   `site/index.html`, and the two `DESCRIPTION` links in `site/wedding.ics`.
+- **Main domain: `alexmarriesmegana.com`** — set as the Pages custom domain
+  (Settings → Pages → Custom domain; with a workflow deploy this lives in repo
+  settings, no `CNAME` file needed). Namecheap Advanced DNS carries four `A`
+  records on `@` → GitHub Pages IPs (185.199.108/109/110/111.153) and a
+  `CNAME` `www` → `thegroobe.github.io`. GitHub auto-issues the TLS cert;
+  "Enforce HTTPS" goes on after the cert lands.
+- **Redirect domain: `meganasmassivemistake.com`** — Namecheap URL Redirect
+  records (301 Permanent) on `@` and `www` → `https://alexmarriesmegana.com`.
+  Namecheap's forwarder is HTTP-only on the source domain, fine for a gag domain.
+- The absolute URLs (`og:url` + `og:image` in `site/index.html`, UIDs +
+  `DESCRIPTION` links in `site/wedding.ics`) are baked to the main domain.
 
 ## Notes
 
