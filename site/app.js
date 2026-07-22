@@ -3,7 +3,7 @@
 
   // ==== CONFIG ====
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzbGhyVR3FiaieY2UerRWDaaKYw1XUYkf2OHt2VOL0OVXFnO0XDLP0ILLbrgkDyjsax/exec';
-  var DEADLINE_UTC = Date.UTC(2026, 9, 2, 6, 59, 59); // Oct 1, 2026 23:59:59 Pacific (PDT = UTC-7)
+  var DEADLINE_UTC = Date.UTC(2026, 9, 1, 6, 59, 59); // Sep 30, 2026 23:59:59 Pacific (PDT = UTC-7)
 
   // ==== Fixed nav: transparent over the hero, solid (with logo crossfade) after 60px.
   //      travel.html's nav carries .nav--solid and skips this entirely. ====

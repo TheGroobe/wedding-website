@@ -237,7 +237,7 @@ img { max-width: 100%; }
 .gt-measure > h3 em { font-style: italic; color: var(--cherry); }
 .hubs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 1.5rem; margin-bottom: 2rem; }
-.hub { border-top: 1px solid var(--rule-50); padding-top: 1rem; }
+.hub { border-top: 1px solid var(--rule-50); padding-top: 1rem; text-align: center; }
 .hub__code { font-family: var(--font-display); font-weight: 500; font-size: 34px;
              color: var(--cherry); line-height: 1; }
 .hub__name { font-weight: 500; margin: 0.4rem 0 0.25rem; }
