@@ -94,7 +94,7 @@ def derived_bands():
 
 def og_card():
     """1200x630 share card: hero photo full-bleed + centered Blossom panel."""
-    BLOSSOM, CHERRY, PEPPERCORN, LATERITE = (245, 239, 226), (107, 29, 40), (35, 41, 31), (182, 92, 56)
+    BLOSSOM, CHERRY, PEPPERCORN, GOLD_INK = (245, 239, 226), (107, 29, 40), (35, 41, 31), (138, 95, 18)
     img = Image.open(os.path.join(SRC, 'hero-src.jpg')).convert('RGB')
     # cover-crop to 1200x630
     target = 1200 / 630
@@ -112,9 +112,9 @@ def og_card():
     # centered Blossom panel
     pw, ph = 760, 350
     px, py = (1200 - pw) // 2, (630 - ph) // 2
-    d.rounded_rectangle([px, py, px + pw, py + ph], radius=10, fill=BLOSSOM,
-                        outline=(169, 135, 63), width=2)
-    display = ImageFont.truetype(os.path.join(ROOT, 'src-assets/fonts/Playfair/PlayfairDisplay-Italic[wght].ttf'), 84)
+    d.rectangle([px, py, px + pw, py + ph], fill=BLOSSOM,
+                outline=(169, 135, 63), width=2)
+    display = ImageFont.truetype(os.path.join(ROOT, 'src-assets/fonts/Playfair/PlayfairDisplay-Italic[wght].ttf'), 96)
     try:
         display.set_variation_by_axes([500])
     except Exception:
@@ -133,10 +133,9 @@ def og_card():
             b = d.textbbox((0, 0), text, font=font)
             d.text((600 - (b[2] - b[0]) / 2 - b[0], y), text, font=font, fill=fill)
 
-    center(py + 48, 'ALEX & MEGANA', jost, LATERITE, tracking=7)
-    center(py + 110, 'Two days in the', display, CHERRY)
-    center(py + 196, 'Western Ghats', display, CHERRY)
-    center(py + 296, 'JANUARY 5-6, 2027  ·  COORG, INDIA', jost, PEPPERCORN, tracking=4)
+    center(py + 56, 'THE WEDDING OF', jost, GOLD_INK, tracking=7)
+    center(py + 118, 'Megana & Alex', display, CHERRY)
+    center(py + 272, 'JANUARY 5-6, 2027  ·  COORG, INDIA', jost, PEPPERCORN, tracking=4)
     path = os.path.join(OUT, 'og-preview.jpg')
     q = 82
     while True:
